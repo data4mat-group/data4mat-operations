@@ -1,0 +1,28 @@
+{
+  "name": "data4mat-operations",
+  "version": "1.0.0",
+  "description": "Source control for the Data4Mat Operations App, process configuration, Power Platform solutions, and deployment automation.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/data4mat-group/data4mat-operations.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/data4mat-group/data4mat-operations/issues"
+  },
+  "homepage": "https://github.com/data4mat-group/data4mat-operations#readme",
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
+}

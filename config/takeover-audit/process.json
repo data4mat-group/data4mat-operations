@@ -1,0 +1,313 @@
+{
+  "$schema": "./schema/process.schema.json",
+  "schemaVersion": "1.0.0",
+  "processId": "takeover-audit",
+  "processName": "Takeover Audit",
+  "processVersion": "1.0.0",
+  "effectiveDate": "2026-07-15",
+  "status": "draft",
+  "description": "Defines the ordered Data4Mat takeover audit process, stage dependencies, hard stops, completion rules, and logical storage mappings.",
+  "defaultStorageMappings": {
+    "audit": "TakeoverAudits",
+    "stage": "AuditStageRecords",
+    "response": "AuditResponses",
+    "finding": "Findings",
+    "evidence": "EvidenceRegister",
+    "remediationAction": "RemediationActions",
+    "approval": "Approvals",
+    "generatedDocument": "GeneratedDocuments"
+  },
+  "allowedProcessStatuses": [
+    "NotStarted",
+    "InProgress",
+    "Blocked",
+    "ReadyForReview",
+    "Completed",
+    "Reopened",
+    "Cancelled"
+  ],
+  "allowedStageStatuses": [
+    "NotStarted",
+    "InProgress",
+    "Blocked",
+    "ReadyForReview",
+    "Completed",
+    "Reopened"
+  ],
+  "stageProgressionPolicy": {
+    "enforceOrder": true,
+    "allowManualBypass": false,
+    "requirePreviousStageCompletion": true,
+    "preserveCompletedStageHistory": true
+  },
+  "stages": [
+    {
+      "stageId": "commercial-scope",
+      "code": "00",
+      "name": "Commercial Scope",
+      "order": 0,
+      "active": true,
+      "required": true,
+      "previousStageId": null,
+      "nextStageId": "access",
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      }
+    },
+    {
+      "stageId": "access",
+      "code": "01",
+      "name": "Access",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "previousStageId": "commercial-scope",
+      "nextStageId": "backups",
+      "hardStopStage": true,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      },
+      "hardStopRules": [
+        {
+          "ruleId": "HS-ACCESS-001",
+          "ruleType": "blockStageProgression",
+          "condition": "AccessUnclear",
+          "message": "Access is unclear. The takeover audit cannot proceed until access has been documented and confirmed."
+        }
+      ]
+    },
+    {
+      "stageId": "backups",
+      "code": "02",
+      "name": "Backups",
+      "order": 20,
+      "active": true,
+      "required": true,
+      "previousStageId": "access",
+      "nextStageId": "dns",
+      "hardStopStage": true,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      },
+      "hardStopRules": [
+        {
+          "ruleId": "HS-BACKUP-001",
+          "ruleType": "blockStageProgression",
+          "condition": "BackupFailedOrUnverified",
+          "message": "A usable backup has not been verified. The takeover audit cannot proceed until backup status is resolved."
+        }
+      ]
+    },
+    {
+      "stageId": "dns",
+      "code": "03",
+      "name": "DNS",
+      "order": 30,
+      "active": true,
+      "required": true,
+      "previousStageId": "backups",
+      "nextStageId": "hosting",
+      "hardStopStage": true,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      },
+      "hardStopRules": [
+        {
+          "ruleId": "HS-DNS-001",
+          "ruleType": "blockStageProgression",
+          "condition": "DnsControlUnknown",
+          "message": "DNS control is unknown. The takeover audit cannot proceed until control and responsibility have been confirmed."
+        }
+      ]
+    },
+    {
+      "stageId": "hosting",
+      "code": "04",
+      "name": "Hosting",
+      "order": 40,
+      "active": true,
+      "required": true,
+      "previousStageId": "dns",
+      "nextStageId": "application",
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      }
+    },
+    {
+      "stageId": "application",
+      "code": "05",
+      "name": "Application",
+      "order": 50,
+      "active": true,
+      "required": true,
+      "previousStageId": "hosting",
+      "nextStageId": "security",
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      }
+    },
+    {
+      "stageId": "security",
+      "code": "06",
+      "name": "Security",
+      "order": 60,
+      "active": true,
+      "required": true,
+      "previousStageId": "application",
+      "nextStageId": "performance",
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      }
+    },
+    {
+      "stageId": "performance",
+      "code": "07",
+      "name": "Performance",
+      "order": 70,
+      "active": true,
+      "required": true,
+      "previousStageId": "security",
+      "nextStageId": "compliance",
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      }
+    },
+    {
+      "stageId": "compliance",
+      "code": "08",
+      "name": "Compliance",
+      "order": 80,
+      "active": true,
+      "required": true,
+      "previousStageId": "performance",
+      "nextStageId": "issues",
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "responses": "AuditResponses",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": true,
+        "requireBlockersResolved": true,
+        "requireReview": false
+      }
+    },
+    {
+      "stageId": "issues",
+      "code": "09",
+      "name": "Issues",
+      "order": 90,
+      "active": true,
+      "required": true,
+      "previousStageId": "compliance",
+      "nextStageId": "remediation-plan",
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "findings": "Findings",
+        "evidence": "EvidenceRegister"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": false,
+        "requireAllFindingsReviewed": true,
+        "requireBlockersResolved": true,
+        "requireReview": true
+      }
+    },
+    {
+      "stageId": "remediation-plan",
+      "code": "10",
+      "name": "Remediation Plan",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "previousStageId": "issues",
+      "nextStageId": null,
+      "hardStopStage": false,
+      "storageMappings": {
+        "stage": "AuditStageRecords",
+        "findings": "Findings",
+        "remediationActions": "RemediationActions",
+        "approvals": "Approvals",
+        "generatedDocuments": "GeneratedDocuments"
+      },
+      "completionRule": {
+        "requireAllRequiredQuestionsAnswered": false,
+        "requireApprovedRemediationPlan": true,
+        "requireBlockersResolved": true,
+        "requireReview": true
+      }
+    }
+  ]
+}

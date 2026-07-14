@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://data4mat.se/schemas/takeover-audit/process.schema.json",
+  "title": "Data4Mat Takeover Audit Process Definition",
+  "description": "Validates the ordered takeover audit process, stages, dependencies, hard stops, completion rules, and logical storage mappings.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "processId",
+    "processName",
+    "processVersion",
+    "effectiveDate",
+    "status",
+    "description",
+    "defaultStorageMappings",
+    "allowedProcessStatuses",
+    "allowedStageStatuses",
+    "stageProgressionPolicy",
+    "stages"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "processId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "processName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "processVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved",
+        "retired"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "defaultStorageMappings": {
+      "$ref": "#/$defs/storageMappings"
+    },
+    "allowedProcessStatuses": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/processStatus"
+      }
+    },
+    "allowedStageStatuses": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/stageStatus"
+      }
+    },
+    "stageProgressionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enforceOrder",
+        "allowManualBypass",
+        "requirePreviousStageCompletion",
+        "preserveCompletedStageHistory"
+      ],
+      "properties": {
+        "enforceOrder": {
+          "type": "boolean"
+        },
+        "allowManualBypass": {
+          "type": "boolean"
+        },
+        "requirePreviousStageCompletion": {
+          "type": "boolean"
+        },
+        "preserveCompletedStageHistory": {
+          "type": "boolean"
+        }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/stage"
+      }
+    }
+  },
+  "$defs": {
+    "processStatus": {
+      "type": "string",
+      "enum": [
+        "NotStarted",
+        "InProgress",
+        "Blocked",
+        "ReadyForReview",
+        "Completed",
+        "Reopened",
+        "Cancelled"
+      ]
+    },
+    "stageStatus": {
+      "type": "string",
+      "enum": [
+        "NotStarted",
+        "InProgress",
+        "Blocked",
+        "ReadyForReview",
+        "Completed",
+        "Reopened"
+      ]
+    },
+    "storageMappings": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "completionRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requireAllRequiredQuestionsAnswered",
+        "requireBlockersResolved",
+        "requireReview"
+      ],
+      "properties": {
+        "requireAllRequiredQuestionsAnswered": {
+          "type": "boolean"
+        },
+        "requireAllFindingsReviewed": {
+          "type": "boolean"
+        },
+        "requireApprovedRemediationPlan": {
+          "type": "boolean"
+        },
+        "requireBlockersResolved": {
+          "type": "boolean"
+        },
+        "requireReview": {
+          "type": "boolean"
+        }
+      }
+    },
+    "hardStopRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ruleId",
+        "ruleType",
+        "condition",
+        "message"
+      ],
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "pattern": "^HS-[A-Z0-9]+-[0-9]{3}$"
+        },
+        "ruleType": {
+          "type": "string",
+          "enum": [
+            "blockStageProgression"
+          ]
+        },
+        "condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stageId",
+        "code",
+        "name",
+        "order",
+        "active",
+        "required",
+        "previousStageId",
+        "nextStageId",
+        "hardStopStage",
+        "storageMappings",
+        "completionRule"
+      ],
+      "properties": {
+        "stageId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^[0-9]{2}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "previousStageId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "nextStageId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "hardStopStage": {
+          "type": "boolean"
+        },
+        "storageMappings": {
+          "$ref": "#/$defs/storageMappings"
+        },
+        "completionRule": {
+          "$ref": "#/$defs/completionRule"
+        },
+        "hardStopRules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/hardStopRule"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "hardStopStage": {
+                "const": true
+              }
+            },
+            "required": [
+              "hardStopStage"
+            ]
+          },
+          "then": {
+            "required": [
+              "hardStopRules"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "hardStopStage": {
+                "const": false
+              }
+            },
+            "required": [
+              "hardStopStage"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "hardStopRules"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
