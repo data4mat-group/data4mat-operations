@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "validate:process": "node scripts/validate-process.js",
+    "validate": "npm run validate:process"
   },
   "repository": {
     "type": "git",
