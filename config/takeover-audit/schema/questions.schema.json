@@ -1,0 +1,329 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://data4mat.se/schemas/takeover-audit/questions.schema.json",
+  "title": "Data4Mat Takeover Audit Question Catalogue",
+  "description": "Validates configurable Takeover Audit questions, response types, validation rules, evidence requirements, and blocking behavior.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "catalogueId",
+    "catalogueName",
+    "catalogueVersion",
+    "effectiveDate",
+    "status",
+    "description",
+    "supportedResponseTypes",
+    "questions"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "catalogueId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "catalogueName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalogueVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved",
+        "retired"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supportedResponseTypes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/responseType"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    }
+  },
+  "$defs": {
+    "responseType": {
+      "type": "string",
+      "enum": [
+        "Boolean",
+        "Choice",
+        "MultiChoice",
+        "ShortText",
+        "LongText",
+        "Number",
+        "Date",
+        "Url",
+        "Person",
+        "Status",
+        "Severity",
+        "EvidenceReference"
+      ]
+    },
+    "choiceOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "label",
+        "active"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minimumLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximumLength": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minimumValue": {
+          "type": "number"
+        },
+        "maximumValue": {
+          "type": "number"
+        },
+        "pattern": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "blockingRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ruleId",
+        "operator",
+        "values",
+        "message"
+      ],
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "pattern": "^BR-[A-Z0-9]+-[0-9]{3}$"
+        },
+        "operator": {
+          "type": "string",
+          "enum": [
+            "equals",
+            "notEquals",
+            "in",
+            "notIn",
+            "isEmpty",
+            "isNotEmpty"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionId",
+        "stageId",
+        "order",
+        "active",
+        "required",
+        "text",
+        "responseType",
+        "evidenceRequired",
+        "createsFinding",
+        "storageEntity"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]+-[0-9]{3}$"
+        },
+        "stageId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "helpText": {
+          "type": "string"
+        },
+        "responseType": {
+          "$ref": "#/$defs/responseType"
+        },
+        "choices": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/choiceOption"
+          }
+        },
+        "defaultValue": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "null"
+          ]
+        },
+        "evidenceRequired": {
+          "type": "boolean"
+        },
+        "evidenceGuidance": {
+          "type": "string"
+        },
+        "createsFinding": {
+          "type": "boolean"
+        },
+        "blockingRules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/blockingRule"
+          }
+        },
+        "validation": {
+          "$ref": "#/$defs/validation"
+        },
+        "storageEntity": {
+          "type": "string",
+          "enum": [
+            "AuditResponse",
+            "Finding",
+            "Evidence",
+            "RemediationAction",
+            "Approval"
+          ]
+        },
+        "internalReport": {
+          "type": "boolean",
+          "default": true
+        },
+        "clientReport": {
+          "type": "boolean",
+          "default": false
+        },
+        "clientSafeLabel": {
+          "type": "string"
+        },
+        "retiredInVersion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "responseType": {
+                "enum": [
+                  "Choice",
+                  "MultiChoice"
+                ]
+              }
+            },
+            "required": [
+              "responseType"
+            ]
+          },
+          "then": {
+            "required": [
+              "choices"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "active": {
+                "const": false
+              }
+            },
+            "required": [
+              "active"
+            ]
+          },
+          "then": {
+            "required": [
+              "retiredInVersion"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+﻿{
+  "$schema": "./schema/questions.schema.json",
+  "schemaVersion": "1.0.0",
+  "catalogueId": "takeover-audit-questions",
+  "catalogueName": "Takeover Audit Question Catalogue",
+  "catalogueVersion": "1.0.0",
+  "effectiveDate": "2026-07-15",
+  "status": "draft",
+  "description": "Defines the configurable questions, response types, validation rules, evidence requirements, and blocking behavior used by the Data4Mat Takeover Audit module.",
+  "supportedResponseTypes": [
+    "Boolean",
+    "Choice",
+    "MultiChoice",
+    "ShortText",
+    "LongText",
+    "Number",
+    "Date",
+    "Url",
+    "Person",
+    "Status",
+    "Severity",
+    "EvidenceReference"
+  ],
+  "questions": []
+}

@@ -8,7 +8,8 @@
   },
   "scripts": {
     "validate:process": "node scripts/validate-process.js",
-    "validate": "npm run validate:process"
+    "validate": "npm run validate:process && npm run validate:questions",
+    "validate:questions": "node scripts/validate-questions.js"
   },
   "repository": {
     "type": "git",
