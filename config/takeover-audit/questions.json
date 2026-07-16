@@ -3397,6 +3397,1018 @@
       "storageEntity": "AuditResponse",
       "internalReport": true,
       "clientReport": false
+    },
+    {
+      "questionId": "APPLICATION-001",
+      "stageId": "application",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record the primary application platform and technical foundation.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the administration interface, source files, package manifests, runtime information, repository, or other technical evidence.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Application platform",
+      "collection": {
+        "entityType": "ApplicationPlatformDetail",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No application platform details have been recorded.",
+        "addButtonLabel": "Add platform detail",
+        "fields": [
+          {
+            "fieldId": "applicationName",
+            "label": "Application or website",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "platformType",
+            "label": "Platform type",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "WordPress",
+                "label": "WordPress",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Drupal",
+                "label": "Drupal",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Joomla",
+                "label": "Joomla",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "AspNet",
+                "label": "ASP.NET",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NextJs",
+                "label": "Next.js",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "React",
+                "label": "React",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "PhpCustom",
+                "label": "Custom PHP",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "StaticSite",
+                "label": "Static website",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 100
+              }
+            ]
+          },
+          {
+            "fieldId": "platformVersion",
+            "label": "Platform version",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "versionStatus",
+            "label": "Version status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Current",
+                "label": "Current",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Supported",
+                "label": "Supported but not current",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Outdated",
+                "label": "Outdated",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Unsupported",
+                "label": "Unsupported",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "frontend",
+            "label": "Theme, frontend, or framework",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "customCode",
+            "label": "Custom code present",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "YesDocumented",
+                "label": "Yes, documented",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "YesUndocumented",
+                "label": "Yes, undocumented or partially documented",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "runtime",
+            "label": "Primary language or runtime",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 70
+          },
+          {
+            "fieldId": "repositoryStatus",
+            "label": "Source repository",
+            "responseType": "Choice",
+            "required": true,
+            "order": 80,
+            "choices": [
+              {
+                "value": "AvailableCurrent",
+                "label": "Available and current",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "AvailableOutdated",
+                "label": "Available but possibly outdated",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Unavailable",
+                "label": "Unavailable",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Overall status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 90,
+            "choices": [
+              {
+                "value": "Acceptable",
+                "label": "Acceptable",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Risk",
+                "label": "Risk identified",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Critical",
+                "label": "Critical issue",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 100
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "APPLICATION-010",
+      "stageId": "application",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Record installed plugins, extensions, packages, and application dependencies.",
+      "helpText": "Include active, inactive, required, custom, licensed, and externally maintained components.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference administration exports, package manifests, dependency files, screenshots, licenses, or repository information.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "ApplicationDependency",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No plugins, extensions, or dependencies have been recorded.",
+        "addButtonLabel": "Add dependency",
+        "fields": [
+          {
+            "fieldId": "name",
+            "label": "Name",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "purpose",
+            "label": "Purpose",
+            "responseType": "LongText",
+            "required": false,
+            "order": 20
+          },
+          {
+            "fieldId": "version",
+            "label": "Installed version",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "activationStatus",
+            "label": "Activation status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Active",
+                "label": "Active",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Inactive",
+                "label": "Inactive",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Required",
+                "label": "Required system component",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "licenseStatus",
+            "label": "License status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 50,
+            "choices": [
+              {
+                "value": "Active",
+                "label": "Active",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Expired",
+                "label": "Expired",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Unlicensed",
+                "label": "Unlicensed",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "NotRequired",
+                "label": "License not required",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "updateStatus",
+            "label": "Update status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "Current",
+                "label": "Current",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "UpdateAvailable",
+                "label": "Update available",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Outdated",
+                "label": "Significantly outdated",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Abandoned",
+                "label": "Abandoned or unsupported",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "risk",
+            "label": "Risk",
+            "responseType": "Severity",
+            "required": true,
+            "order": 70
+          },
+          {
+            "fieldId": "recommendedDecision",
+            "label": "Recommended decision",
+            "responseType": "Choice",
+            "required": true,
+            "order": 80,
+            "choices": [
+              {
+                "value": "Keep",
+                "label": "Keep",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Update",
+                "label": "Update",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Replace",
+                "label": "Replace",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Remove",
+                "label": "Remove",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Review",
+                "label": "Review",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 90
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "APPLICATION-020",
+      "stageId": "application",
+      "order": 200,
+      "active": true,
+      "required": false,
+      "text": "Record external integrations and connected services.",
+      "helpText": "Include forms, email delivery, analytics, payments, authentication, APIs, CRM systems, storage services, and external automation.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "ApplicationIntegration",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No external integrations have been recorded.",
+        "addButtonLabel": "Add integration",
+        "fields": [
+          {
+            "fieldId": "integrationType",
+            "label": "Integration type",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "Forms",
+                "label": "Forms",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Email",
+                "label": "Email sending",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Analytics",
+                "label": "Analytics",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Payments",
+                "label": "Payments",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Authentication",
+                "label": "Authentication",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Api",
+                "label": "API",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Crm",
+                "label": "CRM",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "Automation",
+                "label": "Automation",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "Storage",
+                "label": "External storage",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 100
+              }
+            ]
+          },
+          {
+            "fieldId": "systemName",
+            "label": "System or service",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "businessPurpose",
+            "label": "Business purpose",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "owner",
+            "label": "Account owner or responsible party",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 40
+          },
+          {
+            "fieldId": "credentialStatus",
+            "label": "Credential or connection status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 50,
+            "choices": [
+              {
+                "value": "Confirmed",
+                "label": "Confirmed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Expired",
+                "label": "Expired or invalid",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Missing",
+                "label": "Missing",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "risk",
+            "label": "Risk",
+            "responseType": "Severity",
+            "required": true,
+            "order": 60
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 70
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "APPLICATION-030",
+      "stageId": "application",
+      "order": 300,
+      "active": true,
+      "required": true,
+      "text": "Record observations about application content and structure.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Content and structure",
+      "collection": {
+        "entityType": "ApplicationContentObservation",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No content or structure observations have been recorded.",
+        "addButtonLabel": "Add observation",
+        "fields": [
+          {
+            "fieldId": "area",
+            "label": "Area",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "Pages",
+                "label": "Pages",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Posts",
+                "label": "Posts or news",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Media",
+                "label": "Media library",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Navigation",
+                "label": "Menus and navigation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Forms",
+                "label": "Forms",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Users",
+                "label": "Users and roles",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Taxonomies",
+                "label": "Categories, tags, or taxonomies",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 80
+              }
+            ]
+          },
+          {
+            "fieldId": "observation",
+            "label": "Observation",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "actionNeeded",
+            "label": "Action needed",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Critical",
+                "label": "Critical",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "None",
+                "label": "No action required",
+                "active": true,
+                "order": 50
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "APPLICATION-040",
+      "stageId": "application",
+      "order": 400,
+      "active": true,
+      "required": true,
+      "text": "Is the application source, configuration, and deployment process sufficiently documented to be maintainable and transferable?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 50
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Application maintainability"
+    },
+    {
+      "questionId": "APPLICATION-041",
+      "stageId": "application",
+      "order": 410,
+      "active": true,
+      "required": true,
+      "text": "Can the application be maintained without unnecessary dependence on undocumented proprietary knowledge or inaccessible third-party accounts?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Operational independence"
+    },
+    {
+      "questionId": "APPLICATION-050",
+      "stageId": "application",
+      "order": 500,
+      "active": true,
+      "required": false,
+      "text": "Record application risks and recommended actions.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "ApplicationRisk",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No application risks have been recorded.",
+        "addButtonLabel": "Add application risk",
+        "fields": [
+          {
+            "fieldId": "risk",
+            "label": "Risk",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 20
+          },
+          {
+            "fieldId": "recommendedAction",
+            "label": "Recommended action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Critical",
+                "label": "Critical",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Status",
+            "required": true,
+            "order": 50
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "APPLICATION-060",
+      "stageId": "application",
+      "order": 600,
+      "active": true,
+      "required": true,
+      "text": "Is the application sufficiently understood and documented for the takeover audit to continue?",
+      "helpText": "Select No or Requires confirmation when the platform, dependencies, integrations, source, or critical custom code remain materially unclear.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesWithRisks",
+          "label": "Yes, with documented risks",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
     }
   ]
 }
