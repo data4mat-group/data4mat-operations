@@ -19,7 +19,8 @@
     "Person",
     "Status",
     "Severity",
-    "EvidenceReference"
+    "EvidenceReference",
+    "RepeatingCollection"
   ],
   "questions": []
 }
