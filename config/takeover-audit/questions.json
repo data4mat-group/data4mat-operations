@@ -7325,6 +7325,574 @@
       "storageEntity": "AuditResponse",
       "internalReport": true,
       "clientReport": false
+    },
+    {
+      "questionId": "REMEDIATION-001",
+      "stageId": "remediation-plan",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record the remediation actions proposed for identified takeover issues.",
+      "helpText": "Each action must reference the issue it addresses and define ownership, priority, approval requirements, and verification.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "RemediationAction",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Remediation actions",
+      "collection": {
+        "entityType": "RemediationAction",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No remediation actions have been recorded.",
+        "addButtonLabel": "Add remediation action",
+        "fields": [
+          {
+            "fieldId": "actionReference",
+            "label": "Action reference",
+            "helpText": "Use the assigned remediation reference, such as RA-001.",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "issueReference",
+            "label": "Related issue reference",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "title",
+            "label": "Action title",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "description",
+            "label": "Required work",
+            "responseType": "LongText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "expectedOutcome",
+            "label": "Expected outcome",
+            "responseType": "LongText",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "Critical",
+                "label": "Critical",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "owner",
+            "label": "Responsible party",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 70
+          },
+          {
+            "fieldId": "targetDate",
+            "label": "Target date",
+            "responseType": "Date",
+            "required": false,
+            "order": 80
+          },
+          {
+            "fieldId": "commercialTreatment",
+            "label": "Commercial treatment",
+            "responseType": "Choice",
+            "required": true,
+            "order": 90,
+            "choices": [
+              {
+                "value": "Included",
+                "label": "Included in agreed scope",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "SeparateQuote",
+                "label": "Requires separate quote",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "ClientResponsibility",
+                "label": "Client responsibility",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "SupplierResponsibility",
+                "label": "Supplier responsibility",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Deferred",
+                "label": "Deferred",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "RequiresDecision",
+                "label": "Requires commercial decision",
+                "active": true,
+                "order": 60
+              }
+            ]
+          },
+          {
+            "fieldId": "approvalRequired",
+            "label": "Approval required before implementation",
+            "responseType": "Boolean",
+            "required": true,
+            "order": 100
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 110,
+            "choices": [
+              {
+                "value": "Proposed",
+                "label": "Proposed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "AwaitingApproval",
+                "label": "Awaiting approval",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Approved",
+                "label": "Approved",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "InProgress",
+                "label": "In progress",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Blocked",
+                "label": "Blocked",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Completed",
+                "label": "Completed",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Deferred",
+                "label": "Deferred",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "Rejected",
+                "label": "Rejected",
+                "active": true,
+                "order": 80
+              }
+            ]
+          },
+          {
+            "fieldId": "verificationMethod",
+            "label": "Verification method",
+            "responseType": "LongText",
+            "required": true,
+            "order": 120
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 130
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "REMEDIATION-010",
+      "stageId": "remediation-plan",
+      "order": 100,
+      "active": true,
+      "required": false,
+      "text": "Record dependencies and sequencing requirements between remediation actions.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "RemediationAction",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "RemediationDependency",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No remediation dependencies have been recorded.",
+        "addButtonLabel": "Add dependency",
+        "fields": [
+          {
+            "fieldId": "actionReference",
+            "label": "Action reference",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "dependsOnAction",
+            "label": "Depends on action",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 20
+          },
+          {
+            "fieldId": "dependencyType",
+            "label": "Dependency type",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "Technical",
+                "label": "Technical dependency",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Access",
+                "label": "Access dependency",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Backup",
+                "label": "Backup dependency",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "ClientDecision",
+                "label": "Client decision",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "CommercialApproval",
+                "label": "Commercial approval",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Supplier",
+                "label": "Supplier dependency",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 70
+              }
+            ]
+          },
+          {
+            "fieldId": "description",
+            "label": "Dependency description",
+            "responseType": "LongText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "blocking",
+            "label": "Blocks implementation",
+            "responseType": "Boolean",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "owner",
+            "label": "Responsible party",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "REMEDIATION-020",
+      "stageId": "remediation-plan",
+      "order": 200,
+      "active": true,
+      "required": false,
+      "text": "Record approvals for remediation work.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the written approval, signed document, approved proposal, or other durable authorization.",
+      "createsFinding": false,
+      "storageEntity": "Approval",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "RemediationApproval",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No remediation approvals have been recorded.",
+        "addButtonLabel": "Add approval",
+        "fields": [
+          {
+            "fieldId": "actionReference",
+            "label": "Action reference",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "decision",
+            "label": "Decision",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Approved",
+                "label": "Approved",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "ApprovedWithConditions",
+                "label": "Approved with conditions",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Rejected",
+                "label": "Rejected",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Deferred",
+                "label": "Deferred",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "approvedBy",
+            "label": "Approved by",
+            "responseType": "Person",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "approvalDate",
+            "label": "Approval date",
+            "responseType": "Date",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "conditions",
+            "label": "Conditions or limitations",
+            "responseType": "LongText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Approval evidence",
+            "responseType": "EvidenceReference",
+            "required": true,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "REMEDIATION-030",
+      "stageId": "remediation-plan",
+      "order": 300,
+      "active": true,
+      "required": true,
+      "text": "Have all open critical and high-severity issues been assigned a remediation action, formal deferral, or documented risk acceptance?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "REMEDIATION-040",
+      "stageId": "remediation-plan",
+      "order": 400,
+      "active": true,
+      "required": true,
+      "text": "Is the remediation plan complete, prioritized, commercially clear, and ready for review?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesWithOpenApprovals",
+          "label": "Yes, with clearly identified approvals still pending",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "REMEDIATION-050",
+      "stageId": "remediation-plan",
+      "order": 500,
+      "active": true,
+      "required": true,
+      "text": "What is the final status of the takeover audit?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Completed",
+          "label": "Completed",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "CompletedWithRisks",
+          "label": "Completed with documented risks",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "AwaitingClientDecision",
+          "label": "Awaiting client decision",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "Blocked",
+          "label": "Blocked",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "OnHold",
+          "label": "On hold",
+          "active": true,
+          "order": 50
+        },
+        {
+          "value": "Cancelled",
+          "label": "Cancelled",
+          "active": true,
+          "order": 60
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Takeover audit status"
     }
   ]
 }
