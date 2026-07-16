@@ -490,6 +490,622 @@
           }
         ]
       }
+    },
+    {
+      "questionId": "ACCESS-001",
+      "stageId": "access",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record all systems and services for which access is required.",
+      "helpText": "Include registrars, DNS providers, hosting systems, applications, email platforms, analytics services, payment services, and other relevant systems.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "AccessInventoryItem",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No required systems have been recorded.",
+        "addButtonLabel": "Add system",
+        "fields": [
+          {
+            "fieldId": "systemType",
+            "label": "System type",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "DomainRegistrar",
+                "label": "Domain registrar",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "DnsProvider",
+                "label": "DNS provider",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Hosting",
+                "label": "Hosting or server",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Application",
+                "label": "Application or CMS",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Email",
+                "label": "Email platform",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Analytics",
+                "label": "Analytics or search platform",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Payment",
+                "label": "Payment or ecommerce service",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 80
+              }
+            ]
+          },
+          {
+            "fieldId": "systemName",
+            "label": "System or service name",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "accessReceived",
+            "label": "Access received",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "Yes",
+                "label": "Yes",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 30
+              }
+            ]
+          },
+          {
+            "fieldId": "adminLevel",
+            "label": "Administrative access confirmed",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Yes",
+                "label": "Yes",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "mfaStatus",
+            "label": "MFA status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 50,
+            "choices": [
+              {
+                "value": "Enabled",
+                "label": "Enabled",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Disabled",
+                "label": "Disabled",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Access status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "Confirmed",
+                "label": "Confirmed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Risk",
+                "label": "Risk identified",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 70
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "ACCESS-010",
+      "stageId": "access",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Were credentials transferred without using plain email?",
+      "helpText": "Credentials must be transferred through an approved secure method.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Pass",
+          "label": "Pass",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Fail",
+          "label": "Fail",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "ACCESS-011",
+      "stageId": "access",
+      "order": 110,
+      "active": true,
+      "required": true,
+      "text": "Has a unique account been created for Data4Mat where separate access is supported?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Pass",
+          "label": "Pass",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Fail",
+          "label": "Fail",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "ACCESS-012",
+      "stageId": "access",
+      "order": 120,
+      "active": true,
+      "required": true,
+      "text": "Is MFA enabled for all identified admin-level accounts?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Pass",
+          "label": "Pass",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Fail",
+          "label": "Fail",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Multi-factor authentication"
+    },
+    {
+      "questionId": "ACCESS-013",
+      "stageId": "access",
+      "order": 130,
+      "active": true,
+      "required": true,
+      "text": "Have all shared administrative accounts been identified?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "ACCESS-014",
+      "stageId": "access",
+      "order": 140,
+      "active": true,
+      "required": true,
+      "text": "Have all unknown or unexplained administrative users been identified?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "ACCESS-020",
+      "stageId": "access",
+      "order": 200,
+      "active": true,
+      "required": false,
+      "text": "Record known user accounts and their assigned roles.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "KnownAccessAccount",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No user accounts have been recorded.",
+        "addButtonLabel": "Add account",
+        "fields": [
+          {
+            "fieldId": "accountName",
+            "label": "Name or account",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "systemName",
+            "label": "System",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "role",
+            "label": "Role or permission level",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "recommendedDecision",
+            "label": "Recommended decision",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Keep",
+                "label": "Keep",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Remove",
+                "label": "Remove",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Review",
+                "label": "Review",
+                "active": true,
+                "order": 30
+              }
+            ]
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 50
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "ACCESS-030",
+      "stageId": "access",
+      "order": 300,
+      "active": true,
+      "required": false,
+      "text": "Record missing access and other access-related blockers.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "AccessBlocker",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No access blockers have been recorded.",
+        "addButtonLabel": "Add access blocker",
+        "fields": [
+          {
+            "fieldId": "missingItem",
+            "label": "Missing access or item",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "impact",
+            "label": "Why it matters",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "requiredAction",
+            "label": "Required action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "owner",
+            "label": "Responsible party",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 50,
+            "choices": [
+              {
+                "value": "Open",
+                "label": "Open",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "WaitingForClient",
+                "label": "Waiting for client",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Resolved",
+                "label": "Resolved",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "AcceptedRisk",
+                "label": "Accepted risk",
+                "active": true,
+                "order": 40
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "ACCESS-031",
+      "stageId": "access",
+      "order": 310,
+      "active": true,
+      "required": true,
+      "text": "Is all critical access documented and confirmed sufficiently to continue the takeover audit?",
+      "helpText": "Select No or Requires confirmation if any critical access remains unclear.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "blockingRules": [
+        {
+          "ruleId": "BR-ACCESS-001",
+          "operator": "in",
+          "values": [
+            "No",
+            "RequiresConfirmation"
+          ],
+          "message": "Critical access is not sufficiently documented and confirmed. Dependent takeover work cannot continue."
+        }
+      ]
     }
   ]
 }
