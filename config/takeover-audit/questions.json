@@ -5870,6 +5870,1461 @@
       "storageEntity": "AuditResponse",
       "internalReport": true,
       "clientReport": false
+    },
+    {
+      "questionId": "COMPLIANCE-001",
+      "stageId": "compliance",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record which compliance-related areas are relevant to the systems in scope.",
+      "helpText": "This is an operational assessment only. It does not replace legal review.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Compliance scope",
+      "collection": {
+        "entityType": "ComplianceScopeArea",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No compliance areas have been recorded.",
+        "addButtonLabel": "Add compliance area",
+        "fields": [
+          {
+            "fieldId": "area",
+            "label": "Area",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "PrivacyPolicy",
+                "label": "Privacy policy",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "CookieConsent",
+                "label": "Cookie notice and consent",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "ContactForms",
+                "label": "Contact forms",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "MarketingConsent",
+                "label": "Newsletter and marketing consent",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "EcommerceTerms",
+                "label": "Ecommerce terms",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Accessibility",
+                "label": "Accessibility",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "DataRetention",
+                "label": "Data retention",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "ThirdPartyProcessing",
+                "label": "Third-party data processing",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 90
+              }
+            ]
+          },
+          {
+            "fieldId": "inScope",
+            "label": "In scope",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Yes",
+                "label": "Yes",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "COMPLIANCE-010",
+      "stageId": "compliance",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Record observed personal data collection and processing.",
+      "helpText": "Record visible and confirmed processing only. Mark uncertain purposes or destinations as requiring confirmation.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference forms, privacy notices, application settings, service configurations, database records, or screenshots.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Personal data processing",
+      "collection": {
+        "entityType": "PersonalDataCollection",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No personal data collection has been recorded.",
+        "addButtonLabel": "Add data collection",
+        "fields": [
+          {
+            "fieldId": "dataPoint",
+            "label": "Personal data collected",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "collectionLocation",
+            "label": "Where it is collected",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "purpose",
+            "label": "Observed or stated purpose",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "purposeStated",
+            "label": "Purpose stated to the user",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Yes",
+                "label": "Yes",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Partially",
+                "label": "Partially",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "storageDestination",
+            "label": "Storage or destination",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "thirdPartyRecipient",
+            "label": "Third-party recipient",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 60
+          },
+          {
+            "fieldId": "retentionKnown",
+            "label": "Retention period known",
+            "responseType": "Choice",
+            "required": true,
+            "order": 70,
+            "choices": [
+              {
+                "value": "Yes",
+                "label": "Yes",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 80,
+            "choices": [
+              {
+                "value": "Acceptable",
+                "label": "No visible issue",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Risk",
+                "label": "Potential compliance risk",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 30
+              }
+            ]
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 90
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "COMPLIANCE-020",
+      "stageId": "compliance",
+      "order": 200,
+      "active": true,
+      "required": true,
+      "text": "Record visible policy, consent, and transparency checks.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference public pages, forms, consent interfaces, screenshots, or observed tracking behavior.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Visible compliance checks",
+      "collection": {
+        "entityType": "VisibleComplianceCheck",
+        "minimumItems": 5,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No visible compliance checks have been recorded.",
+        "addButtonLabel": "Add compliance check",
+        "fields": [
+          {
+            "fieldId": "checkType",
+            "label": "Check",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "PrivacyPolicyExists",
+                "label": "Privacy policy exists",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "CookieInformationExists",
+                "label": "Cookie information exists",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "CompanyDetailsVisible",
+                "label": "Company and contact details visible",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "ConsentMatchesTracking",
+                "label": "Consent mechanism matches observed tracking",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "FormPurposeExplained",
+                "label": "Forms explain what happens after submission",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "MarketingConsent",
+                "label": "Marketing consent is clear and separate",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "WithdrawalInformation",
+                "label": "Consent withdrawal information is visible",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "EcommerceTerms",
+                "label": "Required ecommerce information is visible",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "AccessibilityInformation",
+                "label": "Accessibility information is visible where applicable",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 100
+              }
+            ]
+          },
+          {
+            "fieldId": "result",
+            "label": "Result",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Pass",
+                "label": "Pass",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Fail",
+                "label": "Fail",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Partial",
+                "label": "Partially meets visible requirements",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 40
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "COMPLIANCE-030",
+      "stageId": "compliance",
+      "order": 300,
+      "active": true,
+      "required": false,
+      "text": "Record cookies, trackers, analytics tools, and other client-side data collection.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference browser storage, network requests, consent-platform scans, source code, tag managers, or screenshots.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "TrackingTechnology",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No tracking technologies have been recorded.",
+        "addButtonLabel": "Add tracking technology",
+        "fields": [
+          {
+            "fieldId": "technologyName",
+            "label": "Technology or service",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "category",
+            "label": "Category",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Necessary",
+                "label": "Necessary",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Preferences",
+                "label": "Preferences",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Analytics",
+                "label": "Analytics",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Marketing",
+                "label": "Marketing",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Unclassified",
+                "label": "Unclassified",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 60
+              }
+            ]
+          },
+          {
+            "fieldId": "provider",
+            "label": "Provider",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "purpose",
+            "label": "Purpose",
+            "responseType": "LongText",
+            "required": false,
+            "order": 40
+          },
+          {
+            "fieldId": "activatedBeforeConsent",
+            "label": "Activated before consent",
+            "responseType": "Choice",
+            "required": true,
+            "order": 50,
+            "choices": [
+              {
+                "value": "Yes",
+                "label": "Yes",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "listedInCookieNotice",
+            "label": "Listed in cookie information",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "Yes",
+                "label": "Yes",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "No",
+                "label": "No",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 70
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "COMPLIANCE-040",
+      "stageId": "compliance",
+      "order": 400,
+      "active": true,
+      "required": false,
+      "text": "Record compliance-related findings requiring client, specialist, or legal confirmation.",
+      "helpText": "Describe factual observations and required confirmation. Do not present legal conclusions.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "Finding",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Compliance findings",
+      "collection": {
+        "entityType": "ComplianceFinding",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No compliance findings have been recorded.",
+        "addButtonLabel": "Add compliance finding",
+        "fields": [
+          {
+            "fieldId": "observation",
+            "label": "Factual observation",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "risk",
+            "label": "Potential risk",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "requiredConfirmation",
+            "label": "Required confirmation or action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "confirmationType",
+            "label": "Confirmation required from",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Client",
+                "label": "Client",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "LegalAdvisor",
+                "label": "Legal advisor",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "DataProtectionAdvisor",
+                "label": "Data protection specialist",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "AccessibilitySpecialist",
+                "label": "Accessibility specialist",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Supplier",
+                "label": "Supplier or service provider",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 60
+              }
+            ]
+          },
+          {
+            "fieldId": "owner",
+            "label": "Responsible party",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 30
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Status",
+            "required": true,
+            "order": 70
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 80
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "COMPLIANCE-050",
+      "stageId": "compliance",
+      "order": 500,
+      "active": true,
+      "required": true,
+      "text": "Have all visible compliance concerns been recorded without presenting the audit as legal advice?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "COMPLIANCE-060",
+      "stageId": "compliance",
+      "order": 600,
+      "active": true,
+      "required": true,
+      "text": "Is the compliance review sufficiently documented for the takeover audit to continue?",
+      "helpText": "Select Yes with risks when unresolved matters are recorded for client or specialist confirmation.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesWithRisks",
+          "label": "Yes, with documented matters requiring confirmation",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "ISSUES-001",
+      "stageId": "issues",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record every issue identified during the takeover audit.",
+      "helpText": "Every issue must have an area, severity, status, owner, and clear next action. Do not leave unresolved observations outside the issue register.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "Finding",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Audit issues",
+      "collection": {
+        "entityType": "AuditIssue",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No takeover audit issues have been recorded.",
+        "addButtonLabel": "Add issue",
+        "fields": [
+          {
+            "fieldId": "issueReference",
+            "label": "Issue reference",
+            "helpText": "Use the assigned issue reference, such as TA-001.",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "area",
+            "label": "Area",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "CommercialScope",
+                "label": "Commercial scope",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Access",
+                "label": "Access",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Backups",
+                "label": "Backups",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Dns",
+                "label": "DNS",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Hosting",
+                "label": "Hosting",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Application",
+                "label": "Application",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Security",
+                "label": "Security",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "Performance",
+                "label": "Performance",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "Compliance",
+                "label": "Compliance",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 100
+              }
+            ]
+          },
+          {
+            "fieldId": "title",
+            "label": "Issue title",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "description",
+            "label": "Factual description",
+            "responseType": "LongText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "impact",
+            "label": "Business or technical impact",
+            "responseType": "LongText",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "severity",
+            "label": "Severity",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "Critical",
+                "label": "Critical",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 70,
+            "choices": [
+              {
+                "value": "Open",
+                "label": "Open",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "InProgress",
+                "label": "In progress",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Blocked",
+                "label": "Blocked",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Resolved",
+                "label": "Resolved",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Deferred",
+                "label": "Deferred",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "AcceptedRisk",
+                "label": "Accepted risk",
+                "active": true,
+                "order": 60
+              }
+            ]
+          },
+          {
+            "fieldId": "owner",
+            "label": "Owner",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 80
+          },
+          {
+            "fieldId": "targetDate",
+            "label": "Target date",
+            "responseType": "Date",
+            "required": false,
+            "order": 90
+          },
+          {
+            "fieldId": "nextAction",
+            "label": "Next action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 100
+          },
+          {
+            "fieldId": "sourceStage",
+            "label": "Source stage",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 110
+          },
+          {
+            "fieldId": "sourceQuestion",
+            "label": "Source question reference",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 120
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 130
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "ISSUES-010",
+      "stageId": "issues",
+      "order": 100,
+      "active": true,
+      "required": false,
+      "text": "Record additional information for blocked issues.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "Finding",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "IssueBlocker",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No blocked issues have been recorded.",
+        "addButtonLabel": "Add blocked issue",
+        "fields": [
+          {
+            "fieldId": "issueReference",
+            "label": "Issue reference",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "blockedBy",
+            "label": "Blocked by",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "MissingAccess",
+                "label": "Missing access",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "ClientDecision",
+                "label": "Client decision",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Supplier",
+                "label": "Supplier or vendor",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "TechnicalDependency",
+                "label": "Technical dependency",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "CommercialApproval",
+                "label": "Commercial approval",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "SecurityRestriction",
+                "label": "Security restriction",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 70
+              }
+            ]
+          },
+          {
+            "fieldId": "blockerDescription",
+            "label": "Blocker description",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "impact",
+            "label": "Impact",
+            "responseType": "LongText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "requiredAction",
+            "label": "Required action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "responsibleParty",
+            "label": "Responsible party",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "ISSUES-020",
+      "stageId": "issues",
+      "order": 200,
+      "active": true,
+      "required": false,
+      "text": "Record resolution evidence for resolved issues.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "Evidence",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "IssueResolutionEvidence",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No issue resolution evidence has been recorded.",
+        "addButtonLabel": "Add resolution evidence",
+        "fields": [
+          {
+            "fieldId": "issueReference",
+            "label": "Issue reference",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "resolutionSummary",
+            "label": "Resolution summary",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "resolvedBy",
+            "label": "Resolved by",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "resolvedDate",
+            "label": "Resolution date",
+            "responseType": "Date",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "verificationMethod",
+            "label": "Verification method",
+            "responseType": "LongText",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": true,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "ISSUES-030",
+      "stageId": "issues",
+      "order": 300,
+      "active": true,
+      "required": false,
+      "text": "Record deferred issues and the authorization for deferral.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "Approval",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "IssueDeferral",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No issues have been deferred.",
+        "addButtonLabel": "Add issue deferral",
+        "fields": [
+          {
+            "fieldId": "issueReference",
+            "label": "Issue reference",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "reason",
+            "label": "Reason for deferral",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "remainingRisk",
+            "label": "Remaining risk",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "approvedBy",
+            "label": "Approved by",
+            "responseType": "Person",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "approvalDate",
+            "label": "Approval date",
+            "responseType": "Date",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "reviewDate",
+            "label": "Review date",
+            "responseType": "Date",
+            "required": false,
+            "order": 60
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Approval evidence",
+            "responseType": "EvidenceReference",
+            "required": true,
+            "order": 70
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "ISSUES-040",
+      "stageId": "issues",
+      "order": 400,
+      "active": true,
+      "required": true,
+      "text": "Have all identified takeover observations been reviewed and either recorded as issues or explicitly closed as requiring no action?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "ISSUES-050",
+      "stageId": "issues",
+      "order": 500,
+      "active": true,
+      "required": true,
+      "text": "Are there any unresolved critical issues that prevent safe progression to remediation planning?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesContained",
+          "label": "Yes, but contained and documented",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "YesUncontained",
+          "label": "Yes, unresolved and not contained",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "ISSUES-060",
+      "stageId": "issues",
+      "order": 600,
+      "active": true,
+      "required": true,
+      "text": "Is the issue register sufficiently complete and controlled for remediation planning to begin?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesWithRisks",
+          "label": "Yes, with documented controlled risks",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
     }
   ]
 }
