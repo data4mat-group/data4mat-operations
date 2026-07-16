@@ -5176,6 +5176,700 @@
       "storageEntity": "AuditResponse",
       "internalReport": true,
       "clientReport": false
+    },
+    {
+      "questionId": "PERFORMANCE-001",
+      "stageId": "performance",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record the performance test context.",
+      "helpText": "Record the conditions under which the baseline was measured so later tests can be compared fairly.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference performance reports, exported test results, screenshots, or saved URLs.",
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "PerformanceTestContext",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No performance test context has been recorded.",
+        "addButtonLabel": "Add test context",
+        "fields": [
+          {
+            "fieldId": "testedUrl",
+            "label": "Tested URL",
+            "responseType": "Url",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "testDate",
+            "label": "Test date",
+            "responseType": "Date",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "deviceProfile",
+            "label": "Device profile",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "Desktop",
+                "label": "Desktop",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Mobile",
+                "label": "Mobile",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Both",
+                "label": "Desktop and mobile",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Custom",
+                "label": "Custom profile",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "networkProfile",
+            "label": "Network profile",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 40
+          },
+          {
+            "fieldId": "testTool",
+            "label": "Tool used",
+            "responseType": "Choice",
+            "required": true,
+            "order": 50,
+            "choices": [
+              {
+                "value": "PageSpeedInsights",
+                "label": "PageSpeed Insights",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Lighthouse",
+                "label": "Lighthouse",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "WebPageTest",
+                "label": "WebPageTest",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "BrowserTools",
+                "label": "Browser developer tools",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Manual",
+                "label": "Manual observation",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 60
+              }
+            ]
+          },
+          {
+            "fieldId": "cacheStatus",
+            "label": "Cache status during test",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "EnabledWarm",
+                "label": "Enabled and warmed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "EnabledCold",
+                "label": "Enabled but cold",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Disabled",
+                "label": "Disabled",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Unknown",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": true,
+            "order": 70
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 80
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "PERFORMANCE-010",
+      "stageId": "performance",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Record the measured performance baseline.",
+      "helpText": "Record observed values only. Do not estimate missing metrics.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the corresponding performance test report or screenshot.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Performance baseline",
+      "collection": {
+        "entityType": "PerformanceMetric",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No performance metrics have been recorded.",
+        "addButtonLabel": "Add performance metric",
+        "fields": [
+          {
+            "fieldId": "testedUrl",
+            "label": "Tested URL",
+            "responseType": "Url",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "device",
+            "label": "Device",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Desktop",
+                "label": "Desktop",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Mobile",
+                "label": "Mobile",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 30
+              }
+            ]
+          },
+          {
+            "fieldId": "metric",
+            "label": "Metric",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "PerformanceScore",
+                "label": "Overall performance score",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "LCP",
+                "label": "Largest Contentful Paint",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "CLS",
+                "label": "Cumulative Layout Shift",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "INP",
+                "label": "Interaction to Next Paint",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "TBT",
+                "label": "Total Blocking Time",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "TTFB",
+                "label": "Time to First Byte",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "PageWeight",
+                "label": "Page weight",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "RequestCount",
+                "label": "Request count",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 90
+              }
+            ]
+          },
+          {
+            "fieldId": "measuredValue",
+            "label": "Measured value",
+            "responseType": "Number",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "unit",
+            "label": "Unit",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "result",
+            "label": "Assessment",
+            "responseType": "Choice",
+            "required": true,
+            "order": 60,
+            "choices": [
+              {
+                "value": "Good",
+                "label": "Good",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "NeedsImprovement",
+                "label": "Needs improvement",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Poor",
+                "label": "Poor",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "NotAssessed",
+                "label": "Not assessed",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 70
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "PERFORMANCE-020",
+      "stageId": "performance",
+      "order": 200,
+      "active": true,
+      "required": false,
+      "text": "Record observed performance bottlenecks.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "Finding",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Observed performance issues",
+      "collection": {
+        "entityType": "PerformanceBottleneck",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No performance bottlenecks have been recorded.",
+        "addButtonLabel": "Add bottleneck",
+        "fields": [
+          {
+            "fieldId": "observation",
+            "label": "Observation",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "likelyCause",
+            "label": "Likely cause",
+            "responseType": "LongText",
+            "required": false,
+            "order": 20
+          },
+          {
+            "fieldId": "affectedArea",
+            "label": "Affected area",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "Hosting",
+                "label": "Hosting or server",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Application",
+                "label": "Application or CMS",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Database",
+                "label": "Database",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Images",
+                "label": "Images or media",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "JavaScript",
+                "label": "JavaScript",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Css",
+                "label": "CSS",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Fonts",
+                "label": "Fonts",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "ThirdParty",
+                "label": "Third-party service",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "Caching",
+                "label": "Caching",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 100
+              }
+            ]
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 30
+              }
+            ]
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 50
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "PERFORMANCE-030",
+      "stageId": "performance",
+      "order": 300,
+      "active": true,
+      "required": false,
+      "text": "Record possible performance improvements.",
+      "helpText": "Do not promise a specific improvement without implementation and retesting.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "RemediationAction",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Performance improvement options",
+      "collection": {
+        "entityType": "PerformanceImprovement",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No performance improvements have been proposed.",
+        "addButtonLabel": "Add improvement option",
+        "fields": [
+          {
+            "fieldId": "action",
+            "label": "Proposed action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "expectedEffect",
+            "label": "Expected effect",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "riskOrDependency",
+            "label": "Risk or dependency",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "recommendation",
+            "label": "Recommendation",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Do",
+                "label": "Proceed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Defer",
+                "label": "Defer",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Quote",
+                "label": "Prepare separate quote",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Investigate",
+                "label": "Investigate further",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotRecommended",
+                "label": "Not recommended",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 50,
+            "choices": [
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 30
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "PERFORMANCE-040",
+      "stageId": "performance",
+      "order": 400,
+      "active": true,
+      "required": true,
+      "text": "Is the recorded performance baseline sufficiently complete and reproducible?",
+      "helpText": "The test context, tested URLs, tools, cache state, and measured values should be documented sufficiently for later comparison.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "PERFORMANCE-050",
+      "stageId": "performance",
+      "order": 500,
+      "active": true,
+      "required": true,
+      "text": "Is the current performance condition sufficiently documented for the takeover audit to continue?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesWithRisks",
+          "label": "Yes, with documented risks",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
     }
   ]
 }
