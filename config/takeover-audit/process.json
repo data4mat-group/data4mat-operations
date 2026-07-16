@@ -11,6 +11,7 @@
     "audit": "TakeoverAudits",
     "stage": "AuditStageRecords",
     "response": "AuditResponses",
+    "collectionItem": "AuditCollectionItems",
     "finding": "Findings",
     "evidence": "EvidenceRegister",
     "remediationAction": "RemediationActions",
