@@ -4409,6 +4409,773 @@
       "storageEntity": "AuditResponse",
       "internalReport": true,
       "clientReport": false
+    },
+    {
+      "questionId": "SECURITY-001",
+      "stageId": "security",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record the security baseline controls for administrative access.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference account settings, access records, screenshots, authentication policies, or written confirmation.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Administrative security controls",
+      "collection": {
+        "entityType": "SecurityBaselineControl",
+        "minimumItems": 6,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No administrative security controls have been recorded.",
+        "addButtonLabel": "Add security control",
+        "fields": [
+          {
+            "fieldId": "control",
+            "label": "Control",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "MfaAdminSystems",
+                "label": "MFA on admin-level systems",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "UniqueAdminAccounts",
+                "label": "Unique admin accounts",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "NoSharedAdminCredentials",
+                "label": "No shared admin credentials",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "LeastPrivilege",
+                "label": "Least privilege applied",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "UnknownAdminUsersReviewed",
+                "label": "Unknown admin users reviewed",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "SecureCredentialTransfer",
+                "label": "Credentials not sent by plain email",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 70
+              }
+            ]
+          },
+          {
+            "fieldId": "result",
+            "label": "Result",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Pass",
+                "label": "Pass",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Fail",
+                "label": "Fail",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 40
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "SECURITY-010",
+      "stageId": "security",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Record the application and website security checks.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference administration screens, configuration files, scan results, source files, provider settings, or screenshots.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Website security checks",
+      "collection": {
+        "entityType": "ApplicationSecurityCheck",
+        "minimumItems": 8,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No application security checks have been recorded.",
+        "addButtonLabel": "Add security check",
+        "fields": [
+          {
+            "fieldId": "checkType",
+            "label": "Check",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "CoreCurrent",
+                "label": "CMS or application core current",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "ThemesCurrent",
+                "label": "Themes current",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "ExtensionsCurrent",
+                "label": "Plugins, extensions, or packages current",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "SecurityProtection",
+                "label": "Security plugin, firewall, or WAF present",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "FailedLoginProtection",
+                "label": "Failed login protection",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "FileEditingRestricted",
+                "label": "Application file editing restricted where applicable",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "DirectoryListingDisabled",
+                "label": "Directory listing disabled",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "EnumerationRiskReviewed",
+                "label": "Admin URL and user enumeration risks reviewed",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "DebugModeDisabled",
+                "label": "Debug output disabled in production",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "DefaultAccountsRemoved",
+                "label": "Default or unused administrative accounts removed",
+                "active": true,
+                "order": 100
+              },
+              {
+                "value": "SecurityHeaders",
+                "label": "Security headers reviewed",
+                "active": true,
+                "order": 110
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 120
+              }
+            ]
+          },
+          {
+            "fieldId": "result",
+            "label": "Result",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Pass",
+                "label": "Pass",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Fail",
+                "label": "Fail",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Warning",
+                "label": "Warning",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 40
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "SECURITY-020",
+      "stageId": "security",
+      "order": 200,
+      "active": true,
+      "required": true,
+      "text": "Record externally exposed services, files, systems, and environments.",
+      "helpText": "Include open ports, public administration interfaces, exposed sensitive files, forgotten staging sites, development systems, and search-index exposure.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference scan results, DNS records, browser checks, server configuration, screenshots, or search-engine results.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "ExternalExposure",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No external exposure checks have been recorded.",
+        "addButtonLabel": "Add exposure check",
+        "fields": [
+          {
+            "fieldId": "area",
+            "label": "Exposure area",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "OpenPorts",
+                "label": "Open ports or services",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "SensitiveFiles",
+                "label": "Publicly visible sensitive files",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "StagingDevelopment",
+                "label": "Old staging or development sites",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "SearchIndex",
+                "label": "Search-index exposure",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "AdminInterface",
+                "label": "Public administration interface",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "ApiEndpoint",
+                "label": "Public API endpoint",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Storage",
+                "label": "Public storage or backup location",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 80
+              }
+            ]
+          },
+          {
+            "fieldId": "observation",
+            "label": "Observation",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "risk",
+            "label": "Risk",
+            "responseType": "Severity",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "recommendedAction",
+            "label": "Recommended action",
+            "responseType": "LongText",
+            "required": false,
+            "order": 40
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 50
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "SECURITY-030",
+      "stageId": "security",
+      "order": 300,
+      "active": true,
+      "required": true,
+      "text": "Has the application been checked for indicators of compromise or malicious modification?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "NoIndicatorsFound",
+          "label": "Checked; no indicators found",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "IndicatorsFound",
+          "label": "Indicators found",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "PartialCheck",
+          "label": "Partially checked",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotChecked",
+          "label": "Not checked",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 50
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference malware scans, file-integrity checks, log reviews, provider reports, or manual inspection records.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Compromise assessment"
+    },
+    {
+      "questionId": "SECURITY-031",
+      "stageId": "security",
+      "order": 310,
+      "active": true,
+      "required": true,
+      "text": "Have application, server, authentication, and security logs been reviewed where available?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "Unavailable",
+          "label": "Logs unavailable",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 50
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 60
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "SECURITY-032",
+      "stageId": "security",
+      "order": 320,
+      "active": true,
+      "required": true,
+      "text": "Are security alerts and significant authentication events delivered to a responsible person?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 50
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "SECURITY-040",
+      "stageId": "security",
+      "order": 400,
+      "active": true,
+      "required": false,
+      "text": "Record all security findings requiring action.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Security findings",
+      "collection": {
+        "entityType": "SecurityFinding",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No security findings have been recorded.",
+        "addButtonLabel": "Add security finding",
+        "fields": [
+          {
+            "fieldId": "finding",
+            "label": "Finding",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "severity",
+            "label": "Severity",
+            "responseType": "Severity",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "requiredAction",
+            "label": "Required action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "owner",
+            "label": "Responsible party",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Status",
+            "required": true,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "SECURITY-050",
+      "stageId": "security",
+      "order": 500,
+      "active": true,
+      "required": true,
+      "text": "Are there any unresolved critical security findings?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesContained",
+          "label": "Yes, but contained and documented",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "YesUncontained",
+          "label": "Yes, unresolved and not contained",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the relevant security findings, containment evidence, or incident records.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "SECURITY-060",
+      "stageId": "security",
+      "order": 600,
+      "active": true,
+      "required": false,
+      "text": "Record any formal acceptance of unresolved security risk.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference written client acceptance, approval correspondence, signed documentation, or another durable approval record.",
+      "createsFinding": false,
+      "storageEntity": "Approval",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "SecurityRiskAcceptance",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No security risks have been formally accepted.",
+        "addButtonLabel": "Add risk acceptance",
+        "fields": [
+          {
+            "fieldId": "riskReference",
+            "label": "Risk or finding reference",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "accepted",
+            "label": "Risk accepted",
+            "responseType": "Boolean",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "acceptedBy",
+            "label": "Accepted by",
+            "responseType": "Person",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "acceptanceDate",
+            "label": "Acceptance date",
+            "responseType": "Date",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "conditions",
+            "label": "Conditions or limitations",
+            "responseType": "LongText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Written acceptance reference",
+            "responseType": "EvidenceReference",
+            "required": true,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "SECURITY-070",
+      "stageId": "security",
+      "order": 700,
+      "active": true,
+      "required": true,
+      "text": "Is the security posture sufficiently documented and controlled for the takeover audit to continue?",
+      "helpText": "Select No or Requires confirmation when critical exposure, compromised systems, uncontrolled administrative access, or other material security risks remain unresolved.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesWithRisks",
+          "label": "Yes, with documented and controlled risks",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
     }
   ]
 }
