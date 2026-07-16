@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://data4mat.se/schemas/takeover-audit/storage.schema.json",
+  "title": "Data4Mat Takeover Audit Storage Catalogue",
+  "description": "Validates the physical SharePoint storage resources used by the Takeover Audit module.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "storageId",
+    "storageName",
+    "storageVersion",
+    "effectiveDate",
+    "status",
+    "description",
+    "platform",
+    "entities"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "storageId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "storageName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "storageVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved",
+        "retired"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "const": "SharePoint"
+    },
+    "entities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/storageEntity"
+      }
+    }
+  },
+  "$defs": {
+    "storageEntity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logicalKey",
+        "physicalName",
+        "resourceType",
+        "active",
+        "purpose"
+      ],
+      "properties": {
+        "logicalKey": {
+          "type": "string",
+          "pattern": "^[a-z][a-zA-Z0-9]*$"
+        },
+        "physicalName": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]+$"
+        },
+        "resourceType": {
+          "type": "string",
+          "enum": [
+            "List",
+            "DocumentLibrary"
+          ]
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

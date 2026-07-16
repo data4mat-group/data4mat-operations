@@ -1,0 +1,69 @@
+{
+  "$schema": "./schema/storage.schema.json",
+  "schemaVersion": "1.0.0",
+  "storageId": "takeover-audit-storage",
+  "storageName": "Takeover Audit Storage Catalogue",
+  "storageVersion": "1.0.0",
+  "effectiveDate": "2026-07-16",
+  "status": "draft",
+  "description": "Defines the physical SharePoint storage resources used by the Data4Mat Takeover Audit module.",
+  "platform": "SharePoint",
+  "entities": [
+    {
+      "logicalKey": "audit",
+      "physicalName": "TakeoverAudits",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores one record for each takeover audit."
+    },
+    {
+      "logicalKey": "stage",
+      "physicalName": "AuditStageRecords",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores stage status, progression, review, and completion records for each audit."
+    },
+    {
+      "logicalKey": "response",
+      "physicalName": "AuditResponses",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores configured question responses, including repeating collection response data."
+    },
+    {
+      "logicalKey": "finding",
+      "physicalName": "Findings",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores findings identified during the takeover audit."
+    },
+    {
+      "logicalKey": "evidence",
+      "physicalName": "EvidenceRegister",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores evidence references and evidence metadata."
+    },
+    {
+      "logicalKey": "remediationAction",
+      "physicalName": "RemediationActions",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores proposed and approved remediation actions."
+    },
+    {
+      "logicalKey": "approval",
+      "physicalName": "Approvals",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores reviews, approvals, decisions, and formal risk acceptances."
+    },
+    {
+      "logicalKey": "generatedDocument",
+      "physicalName": "GeneratedDocuments",
+      "resourceType": "DocumentLibrary",
+      "active": true,
+      "purpose": "Stores generated audit reports, remediation plans, and related documents."
+    }
+  ]
+}
