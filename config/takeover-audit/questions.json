@@ -22,5 +22,474 @@
     "EvidenceReference",
     "RepeatingCollection"
   ],
-  "questions": []
+  "questions": [
+    {
+      "questionId": "COMMERCIAL-001",
+      "stageId": "commercial-scope",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "What is the client's legal name?",
+      "helpText": "Use the registered legal name of the client organization.",
+      "responseType": "ShortText",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Client"
+    },
+    {
+      "questionId": "COMMERCIAL-002",
+      "stageId": "commercial-scope",
+      "order": 20,
+      "active": true,
+      "required": true,
+      "text": "Who is the primary client contact?",
+      "helpText": "Record the main person responsible for communication and approvals.",
+      "responseType": "Person",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Primary contact"
+    },
+    {
+      "questionId": "COMMERCIAL-003",
+      "stageId": "commercial-scope",
+      "order": 30,
+      "active": true,
+      "required": true,
+      "text": "Which websites, domains, or digital services are included in the engagement?",
+      "helpText": "Record every website, domain, application, or related service included in the takeover audit.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Systems in scope",
+      "collection": {
+        "entityType": "ScopeItem",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No systems have been added to the engagement scope.",
+        "addButtonLabel": "Add system",
+        "fields": [
+          {
+            "fieldId": "name",
+            "label": "Name",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "type",
+            "label": "Type",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Website",
+                "label": "Website",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Domain",
+                "label": "Domain",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Application",
+                "label": "Application",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Email",
+                "label": "Email service",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "url",
+            "label": "URL or identifier",
+            "responseType": "Url",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 40
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "COMMERCIAL-004",
+      "stageId": "commercial-scope",
+      "order": 40,
+      "active": true,
+      "required": true,
+      "text": "What is the agreed engagement start date?",
+      "responseType": "Date",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Engagement start date"
+    },
+    {
+      "questionId": "COMMERCIAL-005",
+      "stageId": "commercial-scope",
+      "order": 50,
+      "active": true,
+      "required": true,
+      "text": "What type of engagement has been agreed?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "TakeoverAudit",
+          "label": "Takeover audit only",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "TakeoverAndRemediation",
+          "label": "Takeover audit and remediation",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "TakeoverAndMaintenance",
+          "label": "Takeover audit and ongoing maintenance",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "Other",
+          "label": "Other",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Engagement type"
+    },
+    {
+      "questionId": "COMMERCIAL-006",
+      "stageId": "commercial-scope",
+      "order": 60,
+      "active": true,
+      "required": true,
+      "text": "What is the current commercial status of the engagement?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Draft",
+          "label": "Draft",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "AwaitingApproval",
+          "label": "Awaiting approval",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Approved",
+          "label": "Approved",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "OnHold",
+          "label": "On hold",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "Cancelled",
+          "label": "Cancelled",
+          "active": true,
+          "order": 50
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "COMMERCIAL-010",
+      "stageId": "commercial-scope",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Is access review included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Access review"
+    },
+    {
+      "questionId": "COMMERCIAL-011",
+      "stageId": "commercial-scope",
+      "order": 110,
+      "active": true,
+      "required": true,
+      "text": "Is backup verification included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Backup verification"
+    },
+    {
+      "questionId": "COMMERCIAL-012",
+      "stageId": "commercial-scope",
+      "order": 120,
+      "active": true,
+      "required": true,
+      "text": "Is DNS inventory and control verification included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "DNS review"
+    },
+    {
+      "questionId": "COMMERCIAL-013",
+      "stageId": "commercial-scope",
+      "order": 130,
+      "active": true,
+      "required": true,
+      "text": "Is hosting review included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Hosting review"
+    },
+    {
+      "questionId": "COMMERCIAL-014",
+      "stageId": "commercial-scope",
+      "order": 140,
+      "active": true,
+      "required": true,
+      "text": "Is application review included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Application review"
+    },
+    {
+      "questionId": "COMMERCIAL-015",
+      "stageId": "commercial-scope",
+      "order": 150,
+      "active": true,
+      "required": true,
+      "text": "Is security review included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Security review"
+    },
+    {
+      "questionId": "COMMERCIAL-016",
+      "stageId": "commercial-scope",
+      "order": 160,
+      "active": true,
+      "required": true,
+      "text": "Is performance review included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Performance review"
+    },
+    {
+      "questionId": "COMMERCIAL-017",
+      "stageId": "commercial-scope",
+      "order": 170,
+      "active": true,
+      "required": true,
+      "text": "Is compliance review included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Compliance review"
+    },
+    {
+      "questionId": "COMMERCIAL-018",
+      "stageId": "commercial-scope",
+      "order": 180,
+      "active": true,
+      "required": true,
+      "text": "Is remediation planning included in the agreed scope?",
+      "responseType": "Boolean",
+      "defaultValue": true,
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Remediation planning"
+    },
+    {
+      "questionId": "COMMERCIAL-020",
+      "stageId": "commercial-scope",
+      "order": 200,
+      "active": true,
+      "required": false,
+      "text": "Record all items explicitly excluded from the agreed scope.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Items outside scope",
+      "collection": {
+        "entityType": "ScopeExclusion",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No scope exclusions have been recorded.",
+        "addButtonLabel": "Add scope exclusion",
+        "fields": [
+          {
+            "fieldId": "description",
+            "label": "Excluded item",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "reason",
+            "label": "Reason for exclusion",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "clientAcknowledged",
+            "label": "Acknowledged by client",
+            "responseType": "Boolean",
+            "required": false,
+            "order": 30
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "COMMERCIAL-021",
+      "stageId": "commercial-scope",
+      "order": 210,
+      "active": true,
+      "required": false,
+      "text": "Record commercial risks, dependencies, or assumptions that may affect the engagement.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "CommercialRisk",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No commercial risks or dependencies have been recorded.",
+        "addButtonLabel": "Add commercial risk",
+        "fields": [
+          {
+            "fieldId": "description",
+            "label": "Risk or dependency",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "impact",
+            "label": "Potential impact",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "owner",
+            "label": "Responsible party",
+            "responseType": "Person",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Status",
+            "required": true,
+            "order": 40
+          }
+        ]
+      }
+    }
+  ]
 }
