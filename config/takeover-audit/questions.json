@@ -2464,6 +2464,939 @@
           "message": "DNS ownership or administrative control is not sufficiently confirmed. DNS changes must not be made."
         }
       ]
+    },
+    {
+      "questionId": "HOSTING-001",
+      "stageId": "hosting",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Who provides the hosting environment?",
+      "helpText": "Record the company or service currently hosting the systems in scope.",
+      "responseType": "ShortText",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the hosting account, invoice, control panel, server information, or written client confirmation.",
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Hosting provider"
+    },
+    {
+      "questionId": "HOSTING-002",
+      "stageId": "hosting",
+      "order": 20,
+      "active": true,
+      "required": true,
+      "text": "Who owns or controls the hosting account?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Client",
+          "label": "Client",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Data4Mat",
+          "label": "Data4Mat",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "CurrentSupplier",
+          "label": "Current supplier",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "FormerSupplier",
+          "label": "Former supplier",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "Shared",
+          "label": "Shared control",
+          "active": true,
+          "order": 50
+        },
+        {
+          "value": "Unknown",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 60
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference account details, billing records, access records, contracts, or written confirmation.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "HOSTING-003",
+      "stageId": "hosting",
+      "order": 30,
+      "active": true,
+      "required": true,
+      "text": "What type of hosting environment is used?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Shared",
+          "label": "Shared hosting",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "ManagedWordPress",
+          "label": "Managed WordPress hosting",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "VPS",
+          "label": "Virtual private server",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "Dedicated",
+          "label": "Dedicated server",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "CloudPlatform",
+          "label": "Cloud platform",
+          "active": true,
+          "order": 50
+        },
+        {
+          "value": "ContainerPlatform",
+          "label": "Container platform",
+          "active": true,
+          "order": 60
+        },
+        {
+          "value": "Other",
+          "label": "Other",
+          "active": true,
+          "order": 70
+        },
+        {
+          "value": "Unknown",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 80
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Hosting environment"
+    },
+    {
+      "questionId": "HOSTING-004",
+      "stageId": "hosting",
+      "order": 40,
+      "active": true,
+      "required": true,
+      "text": "Which hosting management interface is available?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "DirectAdmin",
+          "label": "DirectAdmin",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "cPanel",
+          "label": "cPanel",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Plesk",
+          "label": "Plesk",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "CloudPortal",
+          "label": "Cloud provider portal",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "CustomPanel",
+          "label": "Custom provider panel",
+          "active": true,
+          "order": 50
+        },
+        {
+          "value": "CommandLineOnly",
+          "label": "Command line only",
+          "active": true,
+          "order": 60
+        },
+        {
+          "value": "Other",
+          "label": "Other",
+          "active": true,
+          "order": 70
+        },
+        {
+          "value": "Unknown",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 80
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "HOSTING-005",
+      "stageId": "hosting",
+      "order": 50,
+      "active": true,
+      "required": true,
+      "text": "Does Data4Mat have sufficient administrative access to review the hosting environment?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "ReadOnly",
+          "label": "Read-only access",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Limited",
+          "label": "Limited access",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 50
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "HOSTING-010",
+      "stageId": "hosting",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Record the technical hosting environment details.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the hosting panel, server information, runtime configuration, or provider documentation.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "HostingEnvironmentDetail",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No hosting environment details have been recorded.",
+        "addButtonLabel": "Add environment detail",
+        "fields": [
+          {
+            "fieldId": "environmentName",
+            "label": "Environment",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "purpose",
+            "label": "Purpose",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Production",
+                "label": "Production",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Staging",
+                "label": "Staging",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Development",
+                "label": "Development",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Testing",
+                "label": "Testing",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "operatingSystem",
+            "label": "Operating system",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "webServer",
+            "label": "Web server",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 40
+          },
+          {
+            "fieldId": "runtimeVersion",
+            "label": "Application runtime and version",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "databaseEngine",
+            "label": "Database engine and version",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 60
+          },
+          {
+            "fieldId": "serverLocation",
+            "label": "Server or data-center location",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 70
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 80,
+            "choices": [
+              {
+                "value": "Confirmed",
+                "label": "Confirmed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Risk",
+                "label": "Risk identified",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 30
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 90
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "HOSTING-020",
+      "stageId": "hosting",
+      "order": 200,
+      "active": true,
+      "required": true,
+      "text": "Record the available hosting features and operational capabilities.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "HostingFeature",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No hosting features have been recorded.",
+        "addButtonLabel": "Add hosting feature",
+        "fields": [
+          {
+            "fieldId": "feature",
+            "label": "Feature",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "StagingEnvironment",
+                "label": "Staging environment",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "SshAccess",
+                "label": "SSH access",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "SftpAccess",
+                "label": "SFTP access",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "FileManager",
+                "label": "File manager",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "CronJobs",
+                "label": "Cron jobs or scheduled tasks",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "SslManagement",
+                "label": "SSL certificate management",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "ServerCache",
+                "label": "Server-side cache",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "ErrorLogs",
+                "label": "Error logs",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "AccessLogs",
+                "label": "Access logs",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "BackupSystem",
+                "label": "Backup system",
+                "active": true,
+                "order": 100
+              },
+              {
+                "value": "Monitoring",
+                "label": "Availability or resource monitoring",
+                "active": true,
+                "order": 110
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 120
+              }
+            ]
+          },
+          {
+            "fieldId": "availability",
+            "label": "Availability",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Available",
+                "label": "Available",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Unavailable",
+                "label": "Unavailable",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Limited",
+                "label": "Limited",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "HOSTING-030",
+      "stageId": "hosting",
+      "order": 300,
+      "active": true,
+      "required": true,
+      "text": "Record the hosting resource limits and current usage.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference hosting quotas, provider dashboards, server reports, or monitoring information.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "HostingResource",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No hosting resource limits have been recorded.",
+        "addButtonLabel": "Add resource",
+        "fields": [
+          {
+            "fieldId": "resourceType",
+            "label": "Resource",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "Disk",
+                "label": "Disk storage",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Bandwidth",
+                "label": "Bandwidth or monthly traffic",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Memory",
+                "label": "Memory",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Cpu",
+                "label": "CPU",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Database",
+                "label": "Database storage",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Inodes",
+                "label": "File or inode limit",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "Processes",
+                "label": "Process or execution limit",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 80
+              }
+            ]
+          },
+          {
+            "fieldId": "currentUsage",
+            "label": "Current usage",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 20
+          },
+          {
+            "fieldId": "limit",
+            "label": "Limit",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Acceptable",
+                "label": "Acceptable",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Warning",
+                "label": "Warning",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Critical",
+                "label": "Critical",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 50
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "HOSTING-040",
+      "stageId": "hosting",
+      "order": 400,
+      "active": true,
+      "required": true,
+      "text": "Record the SSL and HTTPS checks.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference certificate information, browser checks, redirect tests, provider settings, or scan results.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "SSL and HTTPS configuration",
+      "collection": {
+        "entityType": "HostingSslCheck",
+        "minimumItems": 4,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No SSL or HTTPS checks have been recorded.",
+        "addButtonLabel": "Add SSL check",
+        "fields": [
+          {
+            "fieldId": "checkType",
+            "label": "Check",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "ValidCertificate",
+                "label": "Valid certificate installed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "AutomaticRenewal",
+                "label": "Automatic renewal confirmed",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "HttpsRedirect",
+                "label": "HTTPS redirect configured correctly",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "MixedContent",
+                "label": "Mixed content check",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "result",
+            "label": "Result",
+            "responseType": "Choice",
+            "required": true,
+            "order": 20,
+            "choices": [
+              {
+                "value": "Pass",
+                "label": "Pass",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Fail",
+                "label": "Fail",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Warning",
+                "label": "Warning",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 30
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 40
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "HOSTING-050",
+      "stageId": "hosting",
+      "order": 500,
+      "active": true,
+      "required": false,
+      "text": "Record hosting-related risks and recommended actions.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "HostingRisk",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No hosting risks have been recorded.",
+        "addButtonLabel": "Add hosting risk",
+        "fields": [
+          {
+            "fieldId": "observation",
+            "label": "Observation",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "risk",
+            "label": "Risk",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "recommendedAction",
+            "label": "Recommended action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Critical",
+                "label": "Critical",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Status",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "HOSTING-060",
+      "stageId": "hosting",
+      "order": 600,
+      "active": true,
+      "required": true,
+      "text": "Is the hosting environment sufficiently documented and accessible for the takeover audit to continue?",
+      "helpText": "Select No or Requires confirmation when ownership, access, environment details, or critical operational limits remain unclear.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "YesWithRisks",
+          "label": "Yes, with documented risks",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
     }
   ]
 }
