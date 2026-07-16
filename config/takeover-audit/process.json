@@ -53,9 +53,7 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
-        "evidence": "EvidenceRegister"
+        "response": "AuditResponses"
       },
       "completionRule": {
         "requireAllRequiredQuestionsAnswered": true,
@@ -75,9 +73,8 @@
       "hardStopStage": true,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
-        "evidence": "EvidenceRegister"
+        "response": "AuditResponses",
+        "finding": "Findings"
       },
       "completionRule": {
         "requireAllRequiredQuestionsAnswered": true,
@@ -105,8 +102,8 @@
       "hardStopStage": true,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
+        "response": "AuditResponses",
+        "finding": "Findings",
         "evidence": "EvidenceRegister"
       },
       "completionRule": {
@@ -135,8 +132,8 @@
       "hardStopStage": true,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
+        "response": "AuditResponses",
+        "finding": "Findings",
         "evidence": "EvidenceRegister"
       },
       "completionRule": {
@@ -165,8 +162,8 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
+        "response": "AuditResponses",
+        "finding": "Findings",
         "evidence": "EvidenceRegister"
       },
       "completionRule": {
@@ -187,8 +184,8 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
+        "response": "AuditResponses",
+        "finding": "Findings",
         "evidence": "EvidenceRegister"
       },
       "completionRule": {
@@ -209,9 +206,10 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
-        "evidence": "EvidenceRegister"
+        "response": "AuditResponses",
+        "finding": "Findings",
+        "evidence": "EvidenceRegister",
+        "approval": "Approvals"
       },
       "completionRule": {
         "requireAllRequiredQuestionsAnswered": true,
@@ -231,9 +229,10 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
-        "evidence": "EvidenceRegister"
+        "response": "AuditResponses",
+        "finding": "Findings",
+        "evidence": "EvidenceRegister",
+        "remediationAction": "RemediationActions"
       },
       "completionRule": {
         "requireAllRequiredQuestionsAnswered": true,
@@ -253,8 +252,8 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "responses": "AuditResponses",
-        "findings": "Findings",
+        "response": "AuditResponses",
+        "finding": "Findings",
         "evidence": "EvidenceRegister"
       },
       "completionRule": {
@@ -275,8 +274,10 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "findings": "Findings",
-        "evidence": "EvidenceRegister"
+        "response": "AuditResponses",
+        "finding": "Findings",
+        "evidence": "EvidenceRegister",
+        "approval": "Approvals"
       },
       "completionRule": {
         "requireAllRequiredQuestionsAnswered": false,
@@ -297,10 +298,12 @@
       "hardStopStage": false,
       "storageMappings": {
         "stage": "AuditStageRecords",
-        "findings": "Findings",
-        "remediationActions": "RemediationActions",
-        "approvals": "Approvals",
-        "generatedDocuments": "GeneratedDocuments"
+        "response": "AuditResponses",
+        "finding": "Findings",
+        "evidence": "EvidenceRegister",
+        "remediationAction": "RemediationActions",
+        "approval": "Approvals",
+        "generatedDocument": "GeneratedDocuments"
       },
       "completionRule": {
         "requireAllRequiredQuestionsAnswered": false,
