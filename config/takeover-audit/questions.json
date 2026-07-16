@@ -1793,6 +1793,677 @@
           "message": "A sufficiently current and usable backup has not been verified. Dependent takeover work cannot continue."
         }
       ]
+    },
+    {
+      "questionId": "DNS-001",
+      "stageId": "dns",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Who is the domain registrar?",
+      "helpText": "Record the registrar currently responsible for the primary domain.",
+      "responseType": "ShortText",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference registrar account information, an invoice, WHOIS/RDAP information, or written client confirmation.",
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "DNS-002",
+      "stageId": "dns",
+      "order": 20,
+      "active": true,
+      "required": true,
+      "text": "Record the authoritative nameservers for the domain.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the authoritative nameserver lookup or registrar configuration.",
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "AuthoritativeNameserver",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No authoritative nameservers have been recorded.",
+        "addButtonLabel": "Add nameserver",
+        "fields": [
+          {
+            "fieldId": "hostname",
+            "label": "Nameserver",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "provider",
+            "label": "Provider",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 20
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "Confirmed",
+                "label": "Confirmed",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Risk",
+                "label": "Risk identified",
+                "active": true,
+                "order": 30
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "DNS-003",
+      "stageId": "dns",
+      "order": 30,
+      "active": true,
+      "required": true,
+      "text": "Who provides authoritative DNS hosting for the domain?",
+      "responseType": "ShortText",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the DNS provider account, nameserver configuration, or other supporting evidence.",
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "DNS-004",
+      "stageId": "dns",
+      "order": 40,
+      "active": true,
+      "required": true,
+      "text": "Who owns or controls the administrative DNS account?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Client",
+          "label": "Client",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Data4Mat",
+          "label": "Data4Mat",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "ThirdPartyProvider",
+          "label": "Third-party provider",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "FormerSupplier",
+          "label": "Former supplier",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "Shared",
+          "label": "Shared control",
+          "active": true,
+          "order": 50
+        },
+        {
+          "value": "Unknown",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 60
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference account ownership, access records, invoices, or written confirmation.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "DNS-005",
+      "stageId": "dns",
+      "order": 50,
+      "active": true,
+      "required": true,
+      "text": "Does Data4Mat have sufficient administrative access to review the DNS configuration?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "ReadOnly",
+          "label": "Read-only access",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "DNS-006",
+      "stageId": "dns",
+      "order": 60,
+      "active": true,
+      "required": true,
+      "text": "Is a current DNS zone export available?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "NotSupported",
+          "label": "Not supported by provider",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "DNS-010",
+      "stageId": "dns",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Record the current DNS records.",
+      "helpText": "Record all active and relevant records, including records whose purpose is currently unknown.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference a zone export, provider screenshot, DNS lookup, or other record inventory.",
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "DnsRecord",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No DNS records have been recorded.",
+        "addButtonLabel": "Add DNS record",
+        "fields": [
+          {
+            "fieldId": "recordType",
+            "label": "Record type",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "A",
+                "label": "A",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "AAAA",
+                "label": "AAAA",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "CNAME",
+                "label": "CNAME",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "MX",
+                "label": "MX",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "TXT",
+                "label": "TXT",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "CAA",
+                "label": "CAA",
+                "active": true,
+                "order": 60
+              },
+              {
+                "value": "NS",
+                "label": "NS",
+                "active": true,
+                "order": 70
+              },
+              {
+                "value": "SRV",
+                "label": "SRV",
+                "active": true,
+                "order": 80
+              },
+              {
+                "value": "PTR",
+                "label": "PTR",
+                "active": true,
+                "order": 90
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 100
+              }
+            ]
+          },
+          {
+            "fieldId": "name",
+            "label": "Name or host",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "value",
+            "label": "Value or target",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "ttl",
+            "label": "TTL",
+            "responseType": "Number",
+            "required": false,
+            "order": 40,
+            "validation": {
+              "minimumValue": 0
+            }
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Number",
+            "required": false,
+            "order": 50,
+            "validation": {
+              "minimumValue": 0
+            }
+          },
+          {
+            "fieldId": "purpose",
+            "label": "Purpose",
+            "responseType": "LongText",
+            "required": false,
+            "order": 60
+          },
+          {
+            "fieldId": "decision",
+            "label": "Recommended decision",
+            "responseType": "Choice",
+            "required": true,
+            "order": 70,
+            "choices": [
+              {
+                "value": "Keep",
+                "label": "Keep",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Review",
+                "label": "Review",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Remove",
+                "label": "Remove",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 80
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "DNS-020",
+      "stageId": "dns",
+      "order": 200,
+      "active": true,
+      "required": true,
+      "text": "Record the email-related DNS checks.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference DNS lookups, mail-provider configuration, validation tools, or screenshots.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Email DNS configuration",
+      "collection": {
+        "entityType": "EmailDnsCheck",
+        "minimumItems": 4,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No email DNS checks have been recorded.",
+        "addButtonLabel": "Add email DNS check",
+        "fields": [
+          {
+            "fieldId": "checkType",
+            "label": "Check",
+            "responseType": "Choice",
+            "required": true,
+            "order": 10,
+            "choices": [
+              {
+                "value": "SPF",
+                "label": "SPF",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "DKIM",
+                "label": "DKIM",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "DMARC",
+                "label": "DMARC",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "MXAlignment",
+                "label": "MX alignment",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "observedValue",
+            "label": "Observed value",
+            "responseType": "LongText",
+            "required": false,
+            "order": 20
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "Pass",
+                "label": "Pass",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Risk",
+                "label": "Risk identified",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Missing",
+                "label": "Missing",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "NotApplicable",
+                "label": "Not applicable",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 40
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "DNS-030",
+      "stageId": "dns",
+      "order": 300,
+      "active": true,
+      "required": false,
+      "text": "Record DNS-related risks, unidentified records, and recommended actions.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "DnsRisk",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No DNS risks have been recorded.",
+        "addButtonLabel": "Add DNS risk",
+        "fields": [
+          {
+            "fieldId": "risk",
+            "label": "Risk",
+            "responseType": "LongText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "impact",
+            "label": "Potential impact",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "recommendedAction",
+            "label": "Recommended action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "priority",
+            "label": "Priority",
+            "responseType": "Choice",
+            "required": true,
+            "order": 40,
+            "choices": [
+              {
+                "value": "Critical",
+                "label": "Critical",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "High",
+                "label": "High",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Medium",
+                "label": "Medium",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Low",
+                "label": "Low",
+                "active": true,
+                "order": 40
+              }
+            ]
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Status",
+            "required": true,
+            "order": 50
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 60
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "DNS-040",
+      "stageId": "dns",
+      "order": 400,
+      "active": true,
+      "required": true,
+      "text": "Is DNS ownership and administrative control sufficiently documented and confirmed?",
+      "helpText": "Select No or Requires confirmation if the responsible DNS account, provider, or authorized controller remains unclear.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the account, provider, ownership, access, or written confirmation supporting the conclusion.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "blockingRules": [
+        {
+          "ruleId": "BR-DNS-001",
+          "operator": "in",
+          "values": [
+            "No",
+            "RequiresConfirmation"
+          ],
+          "message": "DNS ownership or administrative control is not sufficiently confirmed. DNS changes must not be made."
+        }
+      ]
     }
   ]
 }
