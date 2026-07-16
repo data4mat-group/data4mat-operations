@@ -1106,6 +1106,693 @@
           "message": "Critical access is not sufficiently documented and confirmed. Dependent takeover work cannot continue."
         }
       ]
+    },
+    {
+      "questionId": "BACKUP-001",
+      "stageId": "backups",
+      "order": 10,
+      "active": true,
+      "required": true,
+      "text": "Record all backup systems and backup methods currently used for the systems in scope.",
+      "helpText": "Include hosting backups, application backups, database backups, file backups, external storage, and third-party backup services.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "BackupInventoryItem",
+        "minimumItems": 1,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No backup systems have been recorded.",
+        "addButtonLabel": "Add backup system",
+        "fields": [
+          {
+            "fieldId": "systemName",
+            "label": "Protected system",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "backupMethod",
+            "label": "Backup method or service",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "backupType",
+            "label": "Backup type",
+            "responseType": "Choice",
+            "required": true,
+            "order": 30,
+            "choices": [
+              {
+                "value": "Full",
+                "label": "Full backup",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "Incremental",
+                "label": "Incremental backup",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Differential",
+                "label": "Differential backup",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Snapshot",
+                "label": "Snapshot",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "Export",
+                "label": "Application or database export",
+                "active": true,
+                "order": 50
+              },
+              {
+                "value": "Other",
+                "label": "Other",
+                "active": true,
+                "order": 60
+              }
+            ]
+          },
+          {
+            "fieldId": "schedule",
+            "label": "Schedule or frequency",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "retention",
+            "label": "Retention period",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "storageLocation",
+            "label": "Storage location",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 60
+          },
+          {
+            "fieldId": "lastSuccessfulBackup",
+            "label": "Last confirmed successful backup",
+            "responseType": "Date",
+            "required": false,
+            "order": 70
+          },
+          {
+            "fieldId": "status",
+            "label": "Backup status",
+            "responseType": "Choice",
+            "required": true,
+            "order": 80,
+            "choices": [
+              {
+                "value": "Verified",
+                "label": "Verified",
+                "active": true,
+                "order": 10
+              },
+              {
+                "value": "ExistsNotVerified",
+                "label": "Exists but not verified",
+                "active": true,
+                "order": 20
+              },
+              {
+                "value": "Failed",
+                "label": "Failed",
+                "active": true,
+                "order": 30
+              },
+              {
+                "value": "Missing",
+                "label": "Missing",
+                "active": true,
+                "order": 40
+              },
+              {
+                "value": "RequiresConfirmation",
+                "label": "Requires confirmation",
+                "active": true,
+                "order": 50
+              }
+            ]
+          },
+          {
+            "fieldId": "notes",
+            "label": "Notes",
+            "responseType": "LongText",
+            "required": false,
+            "order": 90
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "BACKUP-010",
+      "stageId": "backups",
+      "order": 100,
+      "active": true,
+      "required": true,
+      "text": "Does the available backup include all files required to restore the systems in scope?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the backup contents, manifest, archive listing, or other evidence showing what is included.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-011",
+      "stageId": "backups",
+      "order": 110,
+      "active": true,
+      "required": true,
+      "text": "Does the available backup include all databases required to restore the systems in scope?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the database export, backup archive, provider confirmation, or other evidence.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-012",
+      "stageId": "backups",
+      "order": 120,
+      "active": true,
+      "required": true,
+      "text": "Are backups stored separately from the production environment?",
+      "helpText": "A failure or compromise of the production environment should not automatically destroy every usable backup.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Backup storage separation"
+    },
+    {
+      "questionId": "BACKUP-013",
+      "stageId": "backups",
+      "order": 130,
+      "active": true,
+      "required": true,
+      "text": "Are backup operations automated where automation is available?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 50
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-014",
+      "stageId": "backups",
+      "order": 140,
+      "active": true,
+      "required": true,
+      "text": "Are backup failures monitored and reported to a responsible person?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 40
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-015",
+      "stageId": "backups",
+      "order": 150,
+      "active": true,
+      "required": true,
+      "text": "Is access to backup storage restricted to authorized users?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-016",
+      "stageId": "backups",
+      "order": 160,
+      "active": true,
+      "required": true,
+      "text": "Are sensitive backups encrypted where encryption is required or reasonably available?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Partially",
+          "label": "Partially",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 50
+        }
+      ],
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-020",
+      "stageId": "backups",
+      "order": 200,
+      "active": true,
+      "required": true,
+      "text": "What is the declared restore verification status?",
+      "helpText": "A backup existing is not the same as confirming that it can be restored.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "FullRestoreTestPassed",
+          "label": "Full restore test passed",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "PartialRestoreTestPassed",
+          "label": "Partial restore test passed",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "ArchiveInspectedOnly",
+          "label": "Archive inspected but restore not tested",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "RestoreTestFailed",
+          "label": "Restore test failed",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "NotTested",
+          "label": "Not tested",
+          "active": true,
+          "order": 50
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 60
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the restore test record, test environment, logs, screenshots, or inspection evidence.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": true,
+      "clientSafeLabel": "Restore verification status"
+    },
+    {
+      "questionId": "BACKUP-021",
+      "stageId": "backups",
+      "order": 210,
+      "active": true,
+      "required": false,
+      "text": "When was the most recent restore test performed?",
+      "responseType": "Date",
+      "evidenceRequired": false,
+      "createsFinding": false,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-022",
+      "stageId": "backups",
+      "order": 220,
+      "active": true,
+      "required": false,
+      "text": "Record the restore test result and any limitations discovered.",
+      "responseType": "LongText",
+      "validation": {
+        "maximumLength": 5000
+      },
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-030",
+      "stageId": "backups",
+      "order": 300,
+      "active": true,
+      "required": true,
+      "text": "Has Data4Mat created or secured a current pre-intervention backup before any production changes are made?",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "NotApplicable",
+          "label": "Not applicable because no intervention is authorized",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the backup created or secured for the takeover and its storage location.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false
+    },
+    {
+      "questionId": "BACKUP-040",
+      "stageId": "backups",
+      "order": 400,
+      "active": true,
+      "required": false,
+      "text": "Record backup-related deficiencies, unresolved risks, or required actions.",
+      "responseType": "RepeatingCollection",
+      "evidenceRequired": false,
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "collection": {
+        "entityType": "BackupIssue",
+        "minimumItems": 0,
+        "maximumItems": null,
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "emptyMessage": "No backup issues have been recorded.",
+        "addButtonLabel": "Add backup issue",
+        "fields": [
+          {
+            "fieldId": "title",
+            "label": "Issue",
+            "responseType": "ShortText",
+            "required": true,
+            "order": 10
+          },
+          {
+            "fieldId": "description",
+            "label": "Description",
+            "responseType": "LongText",
+            "required": true,
+            "order": 20
+          },
+          {
+            "fieldId": "severity",
+            "label": "Severity",
+            "responseType": "Severity",
+            "required": true,
+            "order": 30
+          },
+          {
+            "fieldId": "requiredAction",
+            "label": "Required action",
+            "responseType": "LongText",
+            "required": true,
+            "order": 40
+          },
+          {
+            "fieldId": "owner",
+            "label": "Responsible party",
+            "responseType": "ShortText",
+            "required": false,
+            "order": 50
+          },
+          {
+            "fieldId": "status",
+            "label": "Status",
+            "responseType": "Status",
+            "required": true,
+            "order": 60
+          },
+          {
+            "fieldId": "evidenceReference",
+            "label": "Evidence reference",
+            "responseType": "EvidenceReference",
+            "required": false,
+            "order": 70
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "BACKUP-050",
+      "stageId": "backups",
+      "order": 500,
+      "active": true,
+      "required": true,
+      "text": "Is a sufficiently current and usable backup verified so the takeover audit can continue?",
+      "helpText": "Select No or Requires confirmation when the backup is missing, failed, incomplete, inaccessible, or insufficiently verified.",
+      "responseType": "Choice",
+      "choices": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "RequiresConfirmation",
+          "label": "Requires confirmation",
+          "active": true,
+          "order": 30
+        }
+      ],
+      "evidenceRequired": true,
+      "evidenceGuidance": "Reference the verified backup and the evidence supporting the declared restore status.",
+      "createsFinding": true,
+      "storageEntity": "AuditResponse",
+      "internalReport": true,
+      "clientReport": false,
+      "blockingRules": [
+        {
+          "ruleId": "BR-BACKUP-001",
+          "operator": "in",
+          "values": [
+            "No",
+            "RequiresConfirmation"
+          ],
+          "message": "A sufficiently current and usable backup has not been verified. Dependent takeover work cannot continue."
+        }
+      ]
     }
   ]
 }
