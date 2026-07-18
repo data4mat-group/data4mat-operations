@@ -1,0 +1,83 @@
+{
+  "$schema": "./schema/storage.schema.json",
+  "schemaVersion": "1.0.0",
+  "storageId": "takeover-audit-runtime-storage",
+  "storageName": "Takeover Audit Runtime Configuration Storage Catalogue",
+  "storageVersion": "1.0.0",
+  "effectiveDate": "2026-07-18",
+  "status": "draft",
+  "description": "Defines the generated SharePoint runtime configuration resources used by the Data4Mat Takeover Audit module. These resources are synchronized from the authoritative GitHub configuration and must not be edited manually in SharePoint.",
+  "platform": "SharePoint",
+  "entities": [
+    {
+      "logicalKey": "configurationDeployment",
+      "physicalName": "ConfigurationDeployments",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores deployed configuration versions, source commit identifiers, deployment status, activation state, and verification results."
+    },
+    {
+      "logicalKey": "processConfiguration",
+      "physicalName": "ProcessConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores process-level runtime configuration, including process identity, version, effective date, status, progression policy, allowed statuses, and default storage mappings."
+    },
+    {
+      "logicalKey": "processStageConfiguration",
+      "physicalName": "ProcessStageConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores the ordered stage definitions, dependencies, completion settings, hard-stop indicators, and storage mappings for each process version."
+    },
+    {
+      "logicalKey": "processRuleConfiguration",
+      "physicalName": "ProcessRuleConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores stage hard-stop rules and other process rules associated with specific process and stage versions."
+    },
+    {
+      "logicalKey": "questionConfiguration",
+      "physicalName": "QuestionConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores question definitions, ordering, response types, validation settings, reporting flags, evidence requirements, finding behavior, labels, defaults, and storage targets for each catalogue version."
+    },
+    {
+      "logicalKey": "questionChoiceConfiguration",
+      "physicalName": "QuestionChoiceConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores ordered choice values and labels for non-collection questions."
+    },
+    {
+      "logicalKey": "questionBlockingRuleConfiguration",
+      "physicalName": "QuestionBlockingRuleConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores blocking rules, operators, comparison values, and messages associated with configured questions."
+    },
+    {
+      "logicalKey": "collectionConfiguration",
+      "physicalName": "CollectionConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores repeating-collection definitions, item limits, editing permissions, empty-state messages, and add-button labels."
+    },
+    {
+      "logicalKey": "collectionFieldConfiguration",
+      "physicalName": "CollectionFieldConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores ordered field definitions, response types, validation settings, required flags, labels, and help text for repeating collections."
+    },
+    {
+      "logicalKey": "collectionFieldChoiceConfiguration",
+      "physicalName": "CollectionFieldChoiceConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores ordered choice values and labels for fields within repeating collections."
+    }
+  ]
+}
