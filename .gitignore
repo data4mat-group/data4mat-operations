@@ -3,5 +3,5 @@ npm-debug.log*
 .env
 .env.*
 .vscode/
-
+*.env.*
 /scripts/README-runtime-configuration.env.txt
