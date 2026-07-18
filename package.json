@@ -10,7 +10,8 @@
     "validate:process": "node scripts/validate-process.js",
     "validate:questions": "node scripts/validate-questions.js",
     "validate:storage": "node scripts/validate-storage.js",
-    "validate": "npm run validate:process && npm run validate:questions && npm run validate:storage"
+    "validate": "npm run validate:process && npm run validate:questions && npm run validate:storage && npm run validate:runtime-storage",
+    "validate:runtime-storage": "node scripts/validate-runtime-storage.js"
   },
   "repository": {
     "type": "git",
