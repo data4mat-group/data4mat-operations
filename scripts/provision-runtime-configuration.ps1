@@ -260,6 +260,12 @@ Ensure-FieldFromXml -ListTitle "QuestionChoiceConfigurations" -InternalName "Que
 Ensure-FieldFromXml -ListTitle "QuestionChoiceConfigurations" -InternalName "ChoiceValue" -DisplayName "Choice Value" -Type Text -Required $true
 Ensure-FieldFromXml -ListTitle "QuestionChoiceConfigurations" -InternalName "ChoiceLabel" -DisplayName "Choice Label" -Type Text -Required $true
 Ensure-FieldFromXml -ListTitle "QuestionChoiceConfigurations" -InternalName "ChoiceOrder" -DisplayName "Choice Order" -Type Number -Required $true -Indexed $true
+Ensure-FieldFromXml `
+  -ListTitle "QuestionChoiceConfigurations" `
+  -InternalName "ChoiceActive" `
+  -DisplayName "Choice Active" `
+  -Type Boolean `
+  -Required $true
 
 Write-Step "Configuring QuestionBlockingRuleConfigurations"
 Add-StandardRuntimeFields -ListTitle "QuestionBlockingRuleConfigurations"
@@ -308,6 +314,12 @@ Ensure-FieldFromXml -ListTitle "CollectionFieldChoiceConfigurations" -InternalNa
 Ensure-FieldFromXml -ListTitle "CollectionFieldChoiceConfigurations" -InternalName "ChoiceValue" -DisplayName "Choice Value" -Type Text -Required $true
 Ensure-FieldFromXml -ListTitle "CollectionFieldChoiceConfigurations" -InternalName "ChoiceLabel" -DisplayName "Choice Label" -Type Text -Required $true
 Ensure-FieldFromXml -ListTitle "CollectionFieldChoiceConfigurations" -InternalName "ChoiceOrder" -DisplayName "Choice Order" -Type Number -Required $true -Indexed $true
+Ensure-FieldFromXml `
+  -ListTitle "CollectionFieldChoiceConfigurations" `
+  -InternalName "ChoiceActive" `
+  -DisplayName "Choice Active" `
+  -Type Boolean `
+  -Required $true
 
 Write-Step "Configuring default views"
 Ensure-View -ListTitle "ConfigurationDeployments" -Fields @(
