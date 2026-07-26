@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://data4mat.se/schemas/takeover-audit/questions.schema.json",
   "title": "Data4Mat Takeover Audit Question Catalogue",

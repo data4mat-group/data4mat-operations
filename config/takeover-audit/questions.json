@@ -47,7 +47,7 @@
       "required": true,
       "text": "Who is the primary client contact?",
       "helpText": "Record the main person responsible for communication and approvals.",
-      "responseType": "Person",
+      "responseType": "ShortText",
       "evidenceRequired": false,
       "createsFinding": false,
       "storageEntity": "AuditResponse",
