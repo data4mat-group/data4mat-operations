@@ -78,6 +78,20 @@
       "resourceType": "List",
       "active": true,
       "purpose": "Stores ordered choice values and labels for fields within repeating collections."
+    },
+    {
+      "logicalKey": "valueSetConfiguration",
+      "physicalName": "ValueSetConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores reusable value-set definitions deployed from the authoritative GitHub configuration."
+    },
+    {
+      "logicalKey": "valueSetChoiceConfiguration",
+      "physicalName": "ValueSetChoiceConfigurations",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores ordered values and labels for reusable configured value sets."
     }
   ]
 }
