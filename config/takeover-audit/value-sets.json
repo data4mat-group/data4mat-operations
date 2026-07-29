@@ -1,0 +1,84 @@
+{
+  "$schema": "./schema/value-sets.schema.json",
+  "schemaVersion": "1.0.0",
+  "catalogueId": "takeover-audit-value-sets",
+  "catalogueName": "Takeover Audit Reusable Value Sets",
+  "catalogueVersion": "1.0.0",
+  "effectiveDate": "2026-07-29",
+  "status": "draft",
+  "description": "Defines reusable configured choice sets used by Takeover Audit questions and repeating-collection fields.",
+  "valueSets": [
+    {
+      "valueSetId": "FindingStatus",
+      "label": "Finding status",
+      "values": [
+        {
+          "value": "Open",
+          "label": "Open",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "InProgress",
+          "label": "In progress",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Resolved",
+          "label": "Resolved",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "Deferred",
+          "label": "Deferred",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "AcceptedRisk",
+          "label": "Accepted risk",
+          "active": true,
+          "order": 50
+        }
+      ]
+    },
+    {
+      "valueSetId": "RiskSeverity",
+      "label": "Risk severity",
+      "values": [
+        {
+          "value": "Informational",
+          "label": "Informational",
+          "active": true,
+          "order": 10
+        },
+        {
+          "value": "Low",
+          "label": "Low",
+          "active": true,
+          "order": 20
+        },
+        {
+          "value": "Medium",
+          "label": "Medium",
+          "active": true,
+          "order": 30
+        },
+        {
+          "value": "High",
+          "label": "High",
+          "active": true,
+          "order": 40
+        },
+        {
+          "value": "Critical",
+          "label": "Critical",
+          "active": true,
+          "order": 50
+        }
+      ]
+    }
+  ]
+}

@@ -79,10 +79,12 @@
         "Number",
         "Date",
         "Url",
-        "Person",
-        "Status",
-        "Severity",
+        "ClientPerson",
+        "ClientPersonMulti",
+        "CompanyPerson",
+        "CompanyPersonMulti",
         "EvidenceReference",
+        "EvidenceReferenceMulti",
         "RepeatingCollection"
       ]
     },
@@ -219,6 +221,10 @@
         },
         "validation": {
           "$ref": "#/$defs/validation"
+        },
+        "valueSetId": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]+$"
         }
       },
       "allOf": [
@@ -237,9 +243,44 @@
             ]
           },
           "then": {
-            "required": [
-              "choices"
+            "oneOf": [
+              {
+                "required": [
+                  "choices"
+                ],
+                "not": {
+                  "required": [
+                    "valueSetId"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "valueSetId"
+                ],
+                "not": {
+                  "required": [
+                    "choices"
+                  ]
+                }
+              }
             ]
+          },
+          "else": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "choices"
+                  ]
+                },
+                {
+                  "required": [
+                    "valueSetId"
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -416,6 +457,10 @@
             "null"
           ],
           "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "valueSetId": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]+$"
         }
       },
       "allOf": [
@@ -434,9 +479,44 @@
             ]
           },
           "then": {
-            "required": [
-              "choices"
+            "oneOf": [
+              {
+                "required": [
+                  "choices"
+                ],
+                "not": {
+                  "required": [
+                    "valueSetId"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "valueSetId"
+                ],
+                "not": {
+                  "required": [
+                    "choices"
+                  ]
+                }
+              }
             ]
+          },
+          "else": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "choices"
+                  ]
+                },
+                {
+                  "required": [
+                    "valueSetId"
+                  ]
+                }
+              ]
+            }
           }
         },
         {

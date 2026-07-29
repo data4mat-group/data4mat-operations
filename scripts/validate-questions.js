@@ -1,4 +1,4 @@
-﻿const fs = require("node:fs");
+const fs = require("node:fs");
 const path = require("node:path");
 const Ajv2020 = require("ajv/dist/2020");
 const addFormats = require("ajv-formats");
@@ -16,7 +16,7 @@ function readJson(filePath) {
   }
 }
 
-function validateCatalogueIntegrity(catalogue, processConfiguration) {
+function validateCatalogueIntegrity(catalogue, processConfiguration, valueSetConfiguration) {
   const errors = [];
 
   const stageIds = new Set(
@@ -24,6 +24,7 @@ function validateCatalogueIntegrity(catalogue, processConfiguration) {
   );
 
   const supportedResponseTypes = new Set(catalogue.supportedResponseTypes);
+  const valueSetIds = new Set(valueSetConfiguration.valueSets.map((valueSet) => valueSet.valueSetId));
   const activeQuestionCountByStage = new Map();
   const questionOrdersByStage = new Map();
   const questionIds = new Set();
@@ -98,6 +99,12 @@ function validateCatalogueIntegrity(catalogue, processConfiguration) {
           );
         }
 
+        if (field.valueSetId && !valueSetIds.has(field.valueSetId)) {
+          errors.push(
+            `Question ${question.questionId}, field ${field.fieldId} references unknown valueSetId: ${field.valueSetId}`
+          );
+        }
+
         const choiceValues = new Set();
 
         for (const choice of field.choices ?? []) {
@@ -161,9 +168,17 @@ const processPath = path.join(
   "process.json"
 );
 
+const valueSetsPath = path.join(
+  root,
+  "config",
+  "takeover-audit",
+  "value-sets.json"
+);
+
 const schema = readJson(schemaPath);
 const data = readJson(dataPath);
 const processConfiguration = readJson(processPath);
+const valueSetConfiguration = readJson(valueSetsPath);
 
 const ajv = new Ajv2020({
   allErrors: true,
@@ -189,7 +204,8 @@ if (!valid) {
 
 const integrityErrors = validateCatalogueIntegrity(
   data,
-  processConfiguration
+  processConfiguration,
+  valueSetConfiguration
 );
 
 if (integrityErrors.length > 0) {

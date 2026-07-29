@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "./schema/questions.schema.json",
   "schemaVersion": "1.0.0",
   "catalogueId": "takeover-audit-questions",
@@ -16,10 +16,12 @@
     "Number",
     "Date",
     "Url",
-    "Person",
-    "Status",
-    "Severity",
+    "ClientPerson",
+    "ClientPersonMulti",
+    "CompanyPerson",
+    "CompanyPersonMulti",
     "EvidenceReference",
+    "EvidenceReferenceMulti",
     "RepeatingCollection"
   ],
   "questions": [
@@ -47,7 +49,7 @@
       "required": true,
       "text": "Who is the primary client contact?",
       "helpText": "Record the main person responsible for communication and approvals.",
-      "responseType": "ShortText",
+      "responseType": "ClientPerson",
       "evidenceRequired": false,
       "createsFinding": false,
       "storageEntity": "AuditResponse",
@@ -477,16 +479,17 @@
           {
             "fieldId": "owner",
             "label": "Responsible party",
-            "responseType": "Person",
+            "responseType": "ClientPerson",
             "required": false,
             "order": 30
           },
           {
             "fieldId": "status",
             "label": "Status",
-            "responseType": "Status",
+            "responseType": "Choice",
             "required": true,
-            "order": 40
+            "order": 40,
+            "valueSetId": "FindingStatus"
           }
         ]
       }
@@ -1712,9 +1715,10 @@
           {
             "fieldId": "severity",
             "label": "Severity",
-            "responseType": "Severity",
+            "responseType": "Choice",
             "required": true,
-            "order": 30
+            "order": 30,
+            "valueSetId": "RiskSeverity"
           },
           {
             "fieldId": "requiredAction",
@@ -1733,9 +1737,10 @@
           {
             "fieldId": "status",
             "label": "Status",
-            "responseType": "Status",
+            "responseType": "Choice",
             "required": true,
-            "order": 60
+            "order": 60,
+            "valueSetId": "FindingStatus"
           },
           {
             "fieldId": "evidenceReference",
@@ -2404,9 +2409,10 @@
           {
             "fieldId": "status",
             "label": "Status",
-            "responseType": "Status",
+            "responseType": "Choice",
             "required": true,
-            "order": 50
+            "order": 50,
+            "valueSetId": "FindingStatus"
           },
           {
             "fieldId": "evidenceReference",
@@ -3343,9 +3349,10 @@
           {
             "fieldId": "status",
             "label": "Status",
-            "responseType": "Status",
+            "responseType": "Choice",
             "required": true,
-            "order": 50
+            "order": 50,
+            "valueSetId": "FindingStatus"
           },
           {
             "fieldId": "evidenceReference",
@@ -3834,9 +3841,10 @@
           {
             "fieldId": "risk",
             "label": "Risk",
-            "responseType": "Severity",
+            "responseType": "Choice",
             "required": true,
-            "order": 70
+            "order": 70,
+            "valueSetId": "RiskSeverity"
           },
           {
             "fieldId": "recommendedDecision",
@@ -4043,9 +4051,10 @@
           {
             "fieldId": "risk",
             "label": "Risk",
-            "responseType": "Severity",
+            "responseType": "Choice",
             "required": true,
-            "order": 60
+            "order": 60,
+            "valueSetId": "RiskSeverity"
           },
           {
             "fieldId": "notes",
@@ -4362,9 +4371,10 @@
           {
             "fieldId": "status",
             "label": "Status",
-            "responseType": "Status",
+            "responseType": "Choice",
             "required": true,
-            "order": 50
+            "order": 50,
+            "valueSetId": "FindingStatus"
           }
         ]
       }
@@ -4790,9 +4800,10 @@
           {
             "fieldId": "risk",
             "label": "Risk",
-            "responseType": "Severity",
+            "responseType": "Choice",
             "required": true,
-            "order": 30
+            "order": 30,
+            "valueSetId": "RiskSeverity"
           },
           {
             "fieldId": "recommendedAction",
@@ -4991,9 +5002,10 @@
           {
             "fieldId": "severity",
             "label": "Severity",
-            "responseType": "Severity",
+            "responseType": "Choice",
             "required": true,
-            "order": 20
+            "order": 20,
+            "valueSetId": "RiskSeverity"
           },
           {
             "fieldId": "evidenceReference",
@@ -5019,9 +5031,10 @@
           {
             "fieldId": "status",
             "label": "Status",
-            "responseType": "Status",
+            "responseType": "Choice",
             "required": true,
-            "order": 60
+            "order": 60,
+            "valueSetId": "FindingStatus"
           }
         ]
       }
@@ -5108,7 +5121,7 @@
           {
             "fieldId": "acceptedBy",
             "label": "Accepted by",
-            "responseType": "Person",
+            "responseType": "ClientPerson",
             "required": true,
             "order": 30
           },
@@ -6616,9 +6629,10 @@
           {
             "fieldId": "status",
             "label": "Status",
-            "responseType": "Status",
+            "responseType": "Choice",
             "required": true,
-            "order": 70
+            "order": 70,
+            "valueSetId": "FindingStatus"
           },
           {
             "fieldId": "evidenceReference",
@@ -7184,7 +7198,7 @@
           {
             "fieldId": "approvedBy",
             "label": "Approved by",
-            "responseType": "Person",
+            "responseType": "ClientPerson",
             "required": true,
             "order": 40
           },
@@ -7739,7 +7753,7 @@
           {
             "fieldId": "approvedBy",
             "label": "Approved by",
-            "responseType": "Person",
+            "responseType": "ClientPerson",
             "required": true,
             "order": 30
           },

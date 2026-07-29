@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://data4mat.se/schemas/takeover-audit/value-sets.schema.json",
+  "title": "Data4Mat Takeover Audit Reusable Value Sets",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "catalogueId",
+    "catalogueName",
+    "catalogueVersion",
+    "effectiveDate",
+    "status",
+    "description",
+    "valueSets"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "catalogueId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "catalogueName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalogueVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved",
+        "retired"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "valueSets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/valueSet"
+      }
+    }
+  },
+  "$defs": {
+    "choiceOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "label",
+        "active",
+        "order"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "valueSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valueSetId",
+        "label",
+        "values"
+      ],
+      "properties": {
+        "valueSetId": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]+$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/choiceOption"
+          }
+        }
+      }
+    }
+  }
+}
