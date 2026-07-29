@@ -306,6 +306,7 @@
         "allowAdd",
         "allowEdit",
         "allowDelete",
+        "summaryFieldId",
         "fields"
       ],
       "properties": {
@@ -338,6 +339,18 @@
         },
         "addButtonLabel": {
           "type": "string"
+        },
+        "summaryFieldId": {
+          "type": "string",
+          "pattern": "^[a-z][a-zA-Z0-9]*$"
+        },
+        "summaryPrefix": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summaryFallback": {
+          "type": "string",
+          "minLength": 1
         },
         "fields": {
           "type": "array",

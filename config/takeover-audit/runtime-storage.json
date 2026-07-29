@@ -63,7 +63,7 @@
       "physicalName": "CollectionConfigurations",
       "resourceType": "List",
       "active": true,
-      "purpose": "Stores repeating-collection definitions, item limits, editing permissions, empty-state messages, and add-button labels."
+      "purpose": "Stores repeating-collection definitions, item limits, editing permissions, empty-state messages, add-button labels, and configured item-summary fields."
     },
     {
       "logicalKey": "collectionFieldConfiguration",
