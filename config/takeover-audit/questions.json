@@ -81,6 +81,9 @@
         "allowDelete": true,
         "emptyMessage": "No systems have been added to the engagement scope.",
         "addButtonLabel": "Add system",
+        "summaryFieldId": "name",
+        "summaryPrefix": "System: ",
+        "summaryFallback": "System",
         "fields": [
           {
             "fieldId": "name",
@@ -414,6 +417,9 @@
         "allowDelete": true,
         "emptyMessage": "No scope exclusions have been recorded.",
         "addButtonLabel": "Add scope exclusion",
+        "summaryFieldId": "description",
+        "summaryPrefix": "Exclusion: ",
+        "summaryFallback": "Scope exclusion",
         "fields": [
           {
             "fieldId": "description",
@@ -461,6 +467,9 @@
         "allowDelete": true,
         "emptyMessage": "No commercial risks or dependencies have been recorded.",
         "addButtonLabel": "Add commercial risk",
+        "summaryFieldId": "description",
+        "summaryPrefix": "Risk: ",
+        "summaryFallback": "Commercial risk",
         "fields": [
           {
             "fieldId": "description",
@@ -517,6 +526,9 @@
         "allowDelete": true,
         "emptyMessage": "No required systems have been recorded.",
         "addButtonLabel": "Add system",
+        "summaryFieldId": "systemName",
+        "summaryPrefix": "System: ",
+        "summaryFallback": "Access item",
         "fields": [
           {
             "fieldId": "systemType",
@@ -918,6 +930,9 @@
         "allowDelete": true,
         "emptyMessage": "No user accounts have been recorded.",
         "addButtonLabel": "Add account",
+        "summaryFieldId": "accountName",
+        "summaryPrefix": "Account: ",
+        "summaryFallback": "Account",
         "fields": [
           {
             "fieldId": "accountName",
@@ -999,6 +1014,9 @@
         "allowDelete": true,
         "emptyMessage": "No access blockers have been recorded.",
         "addButtonLabel": "Add access blocker",
+        "summaryFieldId": "missingItem",
+        "summaryPrefix": "Blocker: ",
+        "summaryFallback": "Access blocker",
         "fields": [
           {
             "fieldId": "missingItem",
@@ -1133,6 +1151,9 @@
         "allowDelete": true,
         "emptyMessage": "No backup systems have been recorded.",
         "addButtonLabel": "Add backup system",
+        "summaryFieldId": "systemName",
+        "summaryPrefix": "System: ",
+        "summaryFallback": "Backup system",
         "fields": [
           {
             "fieldId": "systemName",
@@ -1697,6 +1718,9 @@
         "allowDelete": true,
         "emptyMessage": "No backup issues have been recorded.",
         "addButtonLabel": "Add backup issue",
+        "summaryFieldId": "title",
+        "summaryPrefix": "Issue: ",
+        "summaryFallback": "Backup issue",
         "fields": [
           {
             "fieldId": "title",
@@ -1838,6 +1862,9 @@
         "allowDelete": true,
         "emptyMessage": "No authoritative nameservers have been recorded.",
         "addButtonLabel": "Add nameserver",
+        "summaryFieldId": "hostname",
+        "summaryPrefix": "Nameserver: ",
+        "summaryFallback": "Nameserver",
         "fields": [
           {
             "fieldId": "hostname",
@@ -2055,6 +2082,9 @@
         "allowDelete": true,
         "emptyMessage": "No DNS records have been recorded.",
         "addButtonLabel": "Add DNS record",
+        "summaryFieldId": "name",
+        "summaryPrefix": "DNS record: ",
+        "summaryFallback": "DNS record",
         "fields": [
           {
             "fieldId": "recordType",
@@ -2233,6 +2263,9 @@
         "allowDelete": true,
         "emptyMessage": "No email DNS checks have been recorded.",
         "addButtonLabel": "Add email DNS check",
+        "summaryFieldId": "checkType",
+        "summaryPrefix": "Check: ",
+        "summaryFallback": "Email DNS check",
         "fields": [
           {
             "fieldId": "checkType",
@@ -2351,6 +2384,9 @@
         "allowDelete": true,
         "emptyMessage": "No DNS risks have been recorded.",
         "addButtonLabel": "Add DNS risk",
+        "summaryFieldId": "risk",
+        "summaryPrefix": "Risk: ",
+        "summaryFallback": "DNS risk",
         "fields": [
           {
             "fieldId": "risk",
@@ -2739,6 +2775,9 @@
         "allowDelete": true,
         "emptyMessage": "No hosting environment details have been recorded.",
         "addButtonLabel": "Add environment detail",
+        "summaryFieldId": "environmentName",
+        "summaryPrefix": "Environment: ",
+        "summaryFallback": "Hosting environment",
         "fields": [
           {
             "fieldId": "environmentName",
@@ -2880,6 +2919,9 @@
         "allowDelete": true,
         "emptyMessage": "No hosting features have been recorded.",
         "addButtonLabel": "Add hosting feature",
+        "summaryFieldId": "feature",
+        "summaryPrefix": "Feature: ",
+        "summaryFallback": "Hosting feature",
         "fields": [
           {
             "fieldId": "feature",
@@ -3034,6 +3076,9 @@
         "allowDelete": true,
         "emptyMessage": "No hosting resource limits have been recorded.",
         "addButtonLabel": "Add resource",
+        "summaryFieldId": "resourceType",
+        "summaryPrefix": "Resource: ",
+        "summaryFallback": "Hosting resource",
         "fields": [
           {
             "fieldId": "resourceType",
@@ -3173,6 +3218,9 @@
         "allowDelete": true,
         "emptyMessage": "No SSL or HTTPS checks have been recorded.",
         "addButtonLabel": "Add SSL check",
+        "summaryFieldId": "checkType",
+        "summaryPrefix": "SSL check: ",
+        "summaryFallback": "SSL check",
         "fields": [
           {
             "fieldId": "checkType",
@@ -3291,6 +3339,9 @@
         "allowDelete": true,
         "emptyMessage": "No hosting risks have been recorded.",
         "addButtonLabel": "Add hosting risk",
+        "summaryFieldId": "observation",
+        "summaryPrefix": "Risk: ",
+        "summaryFallback": "Hosting risk",
         "fields": [
           {
             "fieldId": "observation",
@@ -3429,6 +3480,9 @@
         "allowDelete": true,
         "emptyMessage": "No application platform details have been recorded.",
         "addButtonLabel": "Add platform detail",
+        "summaryFieldId": "applicationName",
+        "summaryPrefix": "Application: ",
+        "summaryFallback": "Application platform",
         "fields": [
           {
             "fieldId": "applicationName",
@@ -3705,6 +3759,9 @@
         "allowDelete": true,
         "emptyMessage": "No plugins, extensions, or dependencies have been recorded.",
         "addButtonLabel": "Add dependency",
+        "summaryFieldId": "name",
+        "summaryPrefix": "Dependency: ",
+        "summaryFallback": "Application dependency",
         "fields": [
           {
             "fieldId": "name",
@@ -3918,6 +3975,9 @@
         "allowDelete": true,
         "emptyMessage": "No external integrations have been recorded.",
         "addButtonLabel": "Add integration",
+        "summaryFieldId": "systemName",
+        "summaryPrefix": "Integration: ",
+        "summaryFallback": "Application integration",
         "fields": [
           {
             "fieldId": "integrationType",
@@ -4089,6 +4149,9 @@
         "allowDelete": true,
         "emptyMessage": "No content or structure observations have been recorded.",
         "addButtonLabel": "Add observation",
+        "summaryFieldId": "observation",
+        "summaryPrefix": "Observation: ",
+        "summaryFallback": "Content observation",
         "fields": [
           {
             "fieldId": "area",
@@ -4313,6 +4376,9 @@
         "allowDelete": true,
         "emptyMessage": "No application risks have been recorded.",
         "addButtonLabel": "Add application risk",
+        "summaryFieldId": "risk",
+        "summaryPrefix": "Risk: ",
+        "summaryFallback": "Application risk",
         "fields": [
           {
             "fieldId": "risk",
@@ -4444,6 +4510,9 @@
         "allowDelete": true,
         "emptyMessage": "No administrative security controls have been recorded.",
         "addButtonLabel": "Add security control",
+        "summaryFieldId": "control",
+        "summaryPrefix": "Control: ",
+        "summaryFallback": "Security control",
         "fields": [
           {
             "fieldId": "control",
@@ -4570,6 +4639,9 @@
         "allowDelete": true,
         "emptyMessage": "No application security checks have been recorded.",
         "addButtonLabel": "Add security check",
+        "summaryFieldId": "checkType",
+        "summaryPrefix": "Check: ",
+        "summaryFallback": "Security check",
         "fields": [
           {
             "fieldId": "checkType",
@@ -4732,6 +4804,9 @@
         "allowDelete": true,
         "emptyMessage": "No external exposure checks have been recorded.",
         "addButtonLabel": "Add exposure check",
+        "summaryFieldId": "observation",
+        "summaryPrefix": "Exposure: ",
+        "summaryFallback": "External exposure",
         "fields": [
           {
             "fieldId": "area",
@@ -4991,6 +5066,9 @@
         "allowDelete": true,
         "emptyMessage": "No security findings have been recorded.",
         "addButtonLabel": "Add security finding",
+        "summaryFieldId": "finding",
+        "summaryPrefix": "Finding: ",
+        "summaryFallback": "Security finding",
         "fields": [
           {
             "fieldId": "finding",
@@ -5103,6 +5181,9 @@
         "allowDelete": true,
         "emptyMessage": "No security risks have been formally accepted.",
         "addButtonLabel": "Add risk acceptance",
+        "summaryFieldId": "riskReference",
+        "summaryPrefix": "Risk: ",
+        "summaryFallback": "Risk acceptance",
         "fields": [
           {
             "fieldId": "riskReference",
@@ -5214,6 +5295,9 @@
         "allowDelete": true,
         "emptyMessage": "No performance test context has been recorded.",
         "addButtonLabel": "Add test context",
+        "summaryFieldId": "testedUrl",
+        "summaryPrefix": "Test: ",
+        "summaryFallback": "Performance test",
         "fields": [
           {
             "fieldId": "testedUrl",
@@ -5389,6 +5473,9 @@
         "allowDelete": true,
         "emptyMessage": "No performance metrics have been recorded.",
         "addButtonLabel": "Add performance metric",
+        "summaryFieldId": "metric",
+        "summaryPrefix": "Metric: ",
+        "summaryFallback": "Performance metric",
         "fields": [
           {
             "fieldId": "testedUrl",
@@ -5567,6 +5654,9 @@
         "allowDelete": true,
         "emptyMessage": "No performance bottlenecks have been recorded.",
         "addButtonLabel": "Add bottleneck",
+        "summaryFieldId": "observation",
+        "summaryPrefix": "Bottleneck: ",
+        "summaryFallback": "Performance bottleneck",
         "fields": [
           {
             "fieldId": "observation",
@@ -5712,6 +5802,9 @@
         "allowDelete": true,
         "emptyMessage": "No performance improvements have been proposed.",
         "addButtonLabel": "Add improvement option",
+        "summaryFieldId": "action",
+        "summaryPrefix": "Improvement: ",
+        "summaryFallback": "Performance improvement",
         "fields": [
           {
             "fieldId": "action",
@@ -5908,6 +6001,9 @@
         "allowDelete": true,
         "emptyMessage": "No compliance areas have been recorded.",
         "addButtonLabel": "Add compliance area",
+        "summaryFieldId": "area",
+        "summaryPrefix": "Area: ",
+        "summaryFallback": "Compliance area",
         "fields": [
           {
             "fieldId": "area",
@@ -6040,6 +6136,9 @@
         "allowDelete": true,
         "emptyMessage": "No personal data collection has been recorded.",
         "addButtonLabel": "Add data collection",
+        "summaryFieldId": "dataPoint",
+        "summaryPrefix": "Data: ",
+        "summaryFallback": "Personal data collection",
         "fields": [
           {
             "fieldId": "dataPoint",
@@ -6209,6 +6308,9 @@
         "allowDelete": true,
         "emptyMessage": "No visible compliance checks have been recorded.",
         "addButtonLabel": "Add compliance check",
+        "summaryFieldId": "checkType",
+        "summaryPrefix": "Check: ",
+        "summaryFallback": "Compliance check",
         "fields": [
           {
             "fieldId": "checkType",
@@ -6358,6 +6460,9 @@
         "allowDelete": true,
         "emptyMessage": "No tracking technologies have been recorded.",
         "addButtonLabel": "Add tracking technology",
+        "summaryFieldId": "technologyName",
+        "summaryPrefix": "Technology: ",
+        "summaryFallback": "Tracking technology",
         "fields": [
           {
             "fieldId": "technologyName",
@@ -6525,6 +6630,9 @@
         "allowDelete": true,
         "emptyMessage": "No compliance findings have been recorded.",
         "addButtonLabel": "Add compliance finding",
+        "summaryFieldId": "observation",
+        "summaryPrefix": "Finding: ",
+        "summaryFallback": "Compliance finding",
         "fields": [
           {
             "fieldId": "observation",
@@ -6749,6 +6857,9 @@
         "allowDelete": true,
         "emptyMessage": "No takeover audit issues have been recorded.",
         "addButtonLabel": "Add issue",
+        "summaryFieldId": "title",
+        "summaryPrefix": "Issue: ",
+        "summaryFallback": "Audit issue",
         "fields": [
           {
             "fieldId": "issueReference",
@@ -6993,6 +7104,9 @@
         "allowDelete": true,
         "emptyMessage": "No blocked issues have been recorded.",
         "addButtonLabel": "Add blocked issue",
+        "summaryFieldId": "issueReference",
+        "summaryPrefix": "Issue: ",
+        "summaryFallback": "Issue blocker",
         "fields": [
           {
             "fieldId": "issueReference",
@@ -7105,6 +7219,9 @@
         "allowDelete": true,
         "emptyMessage": "No issue resolution evidence has been recorded.",
         "addButtonLabel": "Add resolution evidence",
+        "summaryFieldId": "issueReference",
+        "summaryPrefix": "Issue: ",
+        "summaryFallback": "Resolution evidence",
         "fields": [
           {
             "fieldId": "issueReference",
@@ -7173,6 +7290,9 @@
         "allowDelete": true,
         "emptyMessage": "No issues have been deferred.",
         "addButtonLabel": "Add issue deferral",
+        "summaryFieldId": "issueReference",
+        "summaryPrefix": "Issue: ",
+        "summaryFallback": "Issue deferral",
         "fields": [
           {
             "fieldId": "issueReference",
@@ -7364,6 +7484,9 @@
         "allowDelete": true,
         "emptyMessage": "No remediation actions have been recorded.",
         "addButtonLabel": "Add remediation action",
+        "summaryFieldId": "title",
+        "summaryPrefix": "Action: ",
+        "summaryFallback": "Remediation action",
         "fields": [
           {
             "fieldId": "actionReference",
@@ -7596,6 +7719,9 @@
         "allowDelete": true,
         "emptyMessage": "No remediation dependencies have been recorded.",
         "addButtonLabel": "Add dependency",
+        "summaryFieldId": "actionReference",
+        "summaryPrefix": "Action: ",
+        "summaryFallback": "Remediation dependency",
         "fields": [
           {
             "fieldId": "actionReference",
@@ -7709,6 +7835,9 @@
         "allowDelete": true,
         "emptyMessage": "No remediation approvals have been recorded.",
         "addButtonLabel": "Add approval",
+        "summaryFieldId": "actionReference",
+        "summaryPrefix": "Action: ",
+        "summaryFallback": "Remediation approval",
         "fields": [
           {
             "fieldId": "actionReference",

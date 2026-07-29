@@ -290,6 +290,9 @@ Ensure-FieldFromXml -ListTitle "CollectionConfigurations" -InternalName "AllowEd
 Ensure-FieldFromXml -ListTitle "CollectionConfigurations" -InternalName "AllowDelete" -DisplayName "Allow Delete" -Type Boolean -Required $true
 Ensure-FieldFromXml -ListTitle "CollectionConfigurations" -InternalName "EmptyMessage" -DisplayName "Empty Message" -Type Note
 Ensure-FieldFromXml -ListTitle "CollectionConfigurations" -InternalName "AddButtonLabel" -DisplayName "Add Button Label" -Type Text
+Ensure-FieldFromXml -ListTitle "CollectionConfigurations" -InternalName "SummaryFieldID" -DisplayName "Summary Field ID" -Type Text -Required $true
+Ensure-FieldFromXml -ListTitle "CollectionConfigurations" -InternalName "SummaryPrefix" -DisplayName "Summary Prefix" -Type Text
+Ensure-FieldFromXml -ListTitle "CollectionConfigurations" -InternalName "SummaryFallback" -DisplayName "Summary Fallback" -Type Text
 
 Write-Step "Configuring CollectionFieldConfigurations"
 Add-StandardRuntimeFields -ListTitle "CollectionFieldConfigurations"
@@ -360,7 +363,8 @@ Ensure-View -ListTitle "QuestionBlockingRuleConfigurations" -Fields @(
 
 Ensure-View -ListTitle "CollectionConfigurations" -Fields @(
   "ConfigurationRowID", "CatalogueVersion", "QuestionID", "EntityType",
-  "MinimumItems", "MaximumItems", "AllowAdd", "AllowEdit", "AllowDelete", "IsActive"
+  "MinimumItems", "MaximumItems", "AllowAdd", "AllowEdit", "AllowDelete",
+  "SummaryFieldID", "SummaryPrefix", "SummaryFallback", "IsActive"
 )
 
 Ensure-View -ListTitle "CollectionFieldConfigurations" -Fields @(

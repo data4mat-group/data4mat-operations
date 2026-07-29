@@ -204,7 +204,9 @@ try {
                 MinimumItems=[double]$collection.minimumItems; MaximumItems=(Get-OptionalValue $collection "maximumItems");
                 AllowAdd=[bool]$collection.allowAdd; AllowEdit=[bool]$collection.allowEdit;
                 AllowDelete=[bool]$collection.allowDelete; EmptyMessage=$collection.emptyMessage;
-                AddButtonLabel=$collection.addButtonLabel
+                AddButtonLabel=$collection.addButtonLabel; SummaryFieldID=$collection.summaryFieldId;
+                SummaryPrefix=(Get-OptionalValue $collection "summaryPrefix");
+                SummaryFallback=(Get-OptionalValue $collection "summaryFallback")
             }
             foreach ($field in @($collection.fields)) {
                 $fieldHelpText = if ($field.PSObject.Properties["helpText"]) { $field.helpText } else { $null }

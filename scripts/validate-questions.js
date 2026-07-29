@@ -117,6 +117,12 @@ function validateCatalogueIntegrity(catalogue, processConfiguration, valueSetCon
           choiceValues.add(choice.value);
         }
       }
+
+      if (!fieldIds.has(question.collection.summaryFieldId)) {
+        errors.push(
+          `Question ${question.questionId} references unknown collection summaryFieldId: ${question.collection.summaryFieldId}`
+        );
+      }
     }
 
     const choiceValues = new Set();
