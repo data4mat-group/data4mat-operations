@@ -1,6 +1,7 @@
 ﻿param(
     [string]$SiteUrl = "https://data4matgroup.sharepoint.com/sites/data4matoperations",
-    [string]$ClientId = "9ab7f9fd-440f-4f3b-aab0-84e1a10218c0"
+    [string]$ClientId = "9ab7f9fd-440f-4f3b-aab0-84e1a10218c0",
+    [switch]$ResetDevelopmentRuntime
 )
 
 $ErrorActionPreference = "Stop"
@@ -42,6 +43,14 @@ function Get-ActiveDeploymentItems {
     $query = "<View><Query><Where><Eq><FieldRef Name='IsActive'/><Value Type='Boolean'>1</Value></Eq></Where></Query><RowLimit Paged='TRUE'>5000</RowLimit></View>"
     @(Get-PnPListItem -List "ConfigurationDeployments" -Query $query -PageSize 500)
 }
+function Clear-ListRows {
+    param([Parameter(Mandatory)][string]$List)
+    $items = @(Get-PnPListItem -List $List -PageSize 500)
+    foreach ($item in $items) {
+        Remove-PnPListItem -List $List -Identity $item.Id -Force | Out-Null
+    }
+    Write-Host "  Cleared $($items.Count) rows from $List"
+}
 function Get-OptionalArray {
     param($Object,[string]$Name)
     $property = $Object.PSObject.Properties[$Name]
@@ -72,6 +81,7 @@ finally { Pop-Location }
 Write-Step "Reading source configuration"
 $process = Read-JsonFile (Join-Path $configRoot "process.json")
 $questions = Read-JsonFile (Join-Path $configRoot "questions.json")
+$valueSets = Read-JsonFile (Join-Path $configRoot "value-sets.json")
 $runtimeStorage = Read-JsonFile (Join-Path $configRoot "runtime-storage.json")
 
 $processId = Get-RequiredProperty $process "processId"
@@ -90,7 +100,7 @@ finally { Pop-Location }
 $timestamp = (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssfffZ")
 $deploymentId = "$processId-$processVersion-$catalogueVersion-$timestamp-$($sourceCommitSha.Substring(0,8))"
 $deployedDate = (Get-Date).ToUniversalTime()
-$runtimeLists = @("ProcessConfigurations","ProcessStageConfigurations","ProcessRuleConfigurations","QuestionConfigurations","QuestionChoiceConfigurations","QuestionBlockingRuleConfigurations","CollectionConfigurations","CollectionFieldConfigurations","CollectionFieldChoiceConfigurations")
+$runtimeLists = @("ProcessConfigurations","ProcessStageConfigurations","ProcessRuleConfigurations","QuestionConfigurations","QuestionChoiceConfigurations","QuestionBlockingRuleConfigurations","CollectionConfigurations","CollectionFieldConfigurations","CollectionFieldChoiceConfigurations","ValueSetConfigurations","ValueSetChoiceConfigurations")
 
 $expectedCounts = [ordered]@{
     ProcessConfigurations = 1
@@ -102,6 +112,8 @@ $expectedCounts = [ordered]@{
     CollectionConfigurations = 0
     CollectionFieldConfigurations = 0
     CollectionFieldChoiceConfigurations = 0
+    ValueSetConfigurations = @($valueSets.valueSets).Count
+    ValueSetChoiceConfigurations = 0
 }
 foreach ($stage in @($process.stages)) { $expectedCounts.ProcessRuleConfigurations += @(Get-OptionalArray $stage "hardStopRules").Count }
 foreach ($question in @($questions.questions)) {
@@ -113,9 +125,19 @@ foreach ($question in @($questions.questions)) {
         foreach ($field in @($question.collection.fields)) { $expectedCounts.CollectionFieldChoiceConfigurations += @(Get-OptionalArray $field "choices").Count }
     }
 }
+foreach ($valueSet in @($valueSets.valueSets)) {
+    $expectedCounts.ValueSetChoiceConfigurations += @($valueSet.values).Count
+}
 
 Write-Step "Connecting to SharePoint"
 Connect-PnPOnline -Url $SiteUrl -Interactive -ClientId $ClientId
+
+if ($ResetDevelopmentRuntime) {
+    Write-Step "Resetting development runtime configuration"
+    foreach ($list in $runtimeLists) { Clear-ListRows -List $list }
+    Clear-ListRows -List "ConfigurationDeployments"
+}
+
 $deploymentItem = $null
 
 try {
@@ -155,6 +177,27 @@ try {
                 DeploymentID=$deploymentId; SourceCommitSHA=$sourceCommitSha; IsActive=$false; ProcessID=$processId;
                 ProcessVersion=$processVersion; StageID=$stage.stageId; RuleID=$rule.ruleId; RuleType=$rule.ruleType;
                 Condition=$rule.condition; Message=$rule.message
+            }
+        }
+    }
+
+    Write-Step "Writing reusable value sets"
+    foreach ($valueSet in @($valueSets.valueSets)) {
+        Add-ConfigurationRow "ValueSetConfigurations" @{
+            Title=$valueSet.valueSetId;
+            ConfigurationRowID="$deploymentId|value-set|$($valueSet.valueSetId)";
+            DeploymentID=$deploymentId; SourceCommitSHA=$sourceCommitSha; IsActive=$false;
+            CatalogueID=$valueSets.catalogueId; CatalogueVersion=$valueSets.catalogueVersion;
+            ValueSetID=$valueSet.valueSetId; ValueSetLabel=$valueSet.label
+        }
+        foreach ($choice in @($valueSet.values)) {
+            Add-ConfigurationRow "ValueSetChoiceConfigurations" @{
+                Title="$($valueSet.valueSetId) - $($choice.value)";
+                ConfigurationRowID="$deploymentId|value-set-choice|$($valueSet.valueSetId)|$($choice.value)";
+                DeploymentID=$deploymentId; SourceCommitSHA=$sourceCommitSha; IsActive=$false;
+                CatalogueID=$valueSets.catalogueId; CatalogueVersion=$valueSets.catalogueVersion;
+                ValueSetID=$valueSet.valueSetId; ChoiceValue=$choice.value; ChoiceLabel=$choice.label;
+                ChoiceOrder=[double]$choice.order; ChoiceActive=[bool]$choice.active
             }
         }
     }
@@ -219,7 +262,8 @@ try {
                     CatalogueID=$catalogueId; CatalogueVersion=$catalogueVersion; QuestionID=$question.questionId;
                     FieldID=$field.fieldId; FieldLabel=$field.label; FieldHelpText=$fieldHelpText;
                     ResponseType=$field.responseType; RequiredField=[bool]$field.required; FieldOrder=[double]$field.order;
-                    ValidationJson=$fieldValidationJson; DefaultValueJson=$fieldDefaultValueJson
+                    ValidationJson=$fieldValidationJson; DefaultValueJson=$fieldDefaultValueJson;
+                    ValueSetID=(Get-OptionalValue $field "valueSetId")
                 }
                 foreach ($choice in @(Get-OptionalArray $field "choices")) {
                     Add-ConfigurationRow "CollectionFieldChoiceConfigurations" @{

@@ -169,6 +169,14 @@ $lists = @(
   @{
     Title       = "CollectionFieldChoiceConfigurations"
     Description = "Generated repeating-collection field choices synchronized from questions.json. Do not edit manually."
+  },
+  @{
+    Title       = "ValueSetConfigurations"
+    Description = "Generated reusable value-set definitions synchronized from value-sets.json. Do not edit manually."
+  },
+  @{
+    Title       = "ValueSetChoiceConfigurations"
+    Description = "Generated reusable value-set choices synchronized from value-sets.json. Do not edit manually."
   }
 )
 
@@ -307,6 +315,7 @@ Ensure-FieldFromXml -ListTitle "CollectionFieldConfigurations" -InternalName "Re
 Ensure-FieldFromXml -ListTitle "CollectionFieldConfigurations" -InternalName "FieldOrder" -DisplayName "Field Order" -Type Number -Required $true -Indexed $true
 Ensure-FieldFromXml -ListTitle "CollectionFieldConfigurations" -InternalName "ValidationJson" -DisplayName "Validation JSON" -Type Note
 Ensure-FieldFromXml -ListTitle "CollectionFieldConfigurations" -InternalName "DefaultValueJson" -DisplayName "Default Value JSON" -Type Note
+Ensure-FieldFromXml -ListTitle "CollectionFieldConfigurations" -InternalName "ValueSetID" -DisplayName "Value Set ID" -Type Text -Indexed $true
 
 Write-Step "Configuring CollectionFieldChoiceConfigurations"
 Add-StandardRuntimeFields -ListTitle "CollectionFieldChoiceConfigurations"
@@ -323,6 +332,23 @@ Ensure-FieldFromXml `
   -DisplayName "Choice Active" `
   -Type Boolean `
   -Required $true
+
+Write-Step "Configuring ValueSetConfigurations"
+Add-StandardRuntimeFields -ListTitle "ValueSetConfigurations"
+Ensure-FieldFromXml -ListTitle "ValueSetConfigurations" -InternalName "CatalogueID" -DisplayName "Catalogue ID" -Type Text -Required $true -Indexed $true
+Ensure-FieldFromXml -ListTitle "ValueSetConfigurations" -InternalName "CatalogueVersion" -DisplayName "Catalogue Version" -Type Text -Required $true -Indexed $true
+Ensure-FieldFromXml -ListTitle "ValueSetConfigurations" -InternalName "ValueSetID" -DisplayName "Value Set ID" -Type Text -Required $true -Indexed $true
+Ensure-FieldFromXml -ListTitle "ValueSetConfigurations" -InternalName "ValueSetLabel" -DisplayName "Value Set Label" -Type Text -Required $true
+
+Write-Step "Configuring ValueSetChoiceConfigurations"
+Add-StandardRuntimeFields -ListTitle "ValueSetChoiceConfigurations"
+Ensure-FieldFromXml -ListTitle "ValueSetChoiceConfigurations" -InternalName "CatalogueID" -DisplayName "Catalogue ID" -Type Text -Required $true -Indexed $true
+Ensure-FieldFromXml -ListTitle "ValueSetChoiceConfigurations" -InternalName "CatalogueVersion" -DisplayName "Catalogue Version" -Type Text -Required $true -Indexed $true
+Ensure-FieldFromXml -ListTitle "ValueSetChoiceConfigurations" -InternalName "ValueSetID" -DisplayName "Value Set ID" -Type Text -Required $true -Indexed $true
+Ensure-FieldFromXml -ListTitle "ValueSetChoiceConfigurations" -InternalName "ChoiceValue" -DisplayName "Choice Value" -Type Text -Required $true
+Ensure-FieldFromXml -ListTitle "ValueSetChoiceConfigurations" -InternalName "ChoiceLabel" -DisplayName "Choice Label" -Type Text -Required $true
+Ensure-FieldFromXml -ListTitle "ValueSetChoiceConfigurations" -InternalName "ChoiceOrder" -DisplayName "Choice Order" -Type Number -Required $true -Indexed $true
+Ensure-FieldFromXml -ListTitle "ValueSetChoiceConfigurations" -InternalName "ChoiceActive" -DisplayName "Choice Active" -Type Boolean -Required $true
 
 Write-Step "Configuring default views"
 Ensure-View -ListTitle "ConfigurationDeployments" -Fields @(
@@ -369,7 +395,7 @@ Ensure-View -ListTitle "CollectionConfigurations" -Fields @(
 
 Ensure-View -ListTitle "CollectionFieldConfigurations" -Fields @(
   "ConfigurationRowID", "CatalogueVersion", "QuestionID", "FieldID",
-  "FieldLabel", "ResponseType", "RequiredField", "FieldOrder", "IsActive"
+  "FieldLabel", "ResponseType", "RequiredField", "FieldOrder", "ValueSetID", "IsActive"
 )
 
 Ensure-View -ListTitle "CollectionFieldChoiceConfigurations" -Fields @(
@@ -377,6 +403,15 @@ Ensure-View -ListTitle "CollectionFieldChoiceConfigurations" -Fields @(
   "ChoiceValue", "ChoiceLabel", "ChoiceOrder", "IsActive"
 )
 
+Ensure-View -ListTitle "ValueSetConfigurations" -Fields @(
+  "ConfigurationRowID", "CatalogueVersion", "ValueSetID", "ValueSetLabel", "IsActive"
+)
+
+Ensure-View -ListTitle "ValueSetChoiceConfigurations" -Fields @(
+  "ConfigurationRowID", "CatalogueVersion", "ValueSetID", "ChoiceValue",
+  "ChoiceLabel", "ChoiceOrder", "ChoiceActive", "IsActive"
+)
+
 Write-Step "Runtime configuration provisioning completed"
-Write-Host "Created or verified 10 lists and their fields." -ForegroundColor Green
+Write-Host "Created or verified 12 lists and their fields." -ForegroundColor Green
 Write-Host "No configuration rows were synchronized by this script." -ForegroundColor Yellow
