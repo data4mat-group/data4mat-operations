@@ -35,6 +35,143 @@ $ProvisioningModelJson = @'
   ],
   "resources": [
     {
+      "logicalKey": "clientContact",
+      "physicalName": "ClientContacts",
+      "resourceType": "List",
+      "primaryKey": "ContactID",
+      "titleColumn": {
+        "required": false
+      },
+      "columns": [
+        {
+          "internalName": "ContactID",
+          "displayName": "Contact ID",
+          "fieldType": "Text",
+          "required": true,
+          "indexed": true,
+          "enforceUniqueValues": true,
+          "active": true,
+          "maximumLength": 100,
+          "fieldId": "ffb57ac8-0448-5670-980b-1ba092c8a2e0"
+        },
+        {
+          "internalName": "ClientID",
+          "displayName": "Client ID",
+          "fieldType": "Text",
+          "required": true,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "maximumLength": 255,
+          "fieldId": "951c7d8d-190b-5126-8968-162b29d5fae0"
+        },
+        {
+          "internalName": "FullName",
+          "displayName": "Full Name",
+          "fieldType": "Text",
+          "required": true,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "maximumLength": 255,
+          "fieldId": "74a6d5b9-4b38-5de8-924c-bf9adfbc1097"
+        },
+        {
+          "internalName": "JobTitle",
+          "displayName": "Job Title",
+          "fieldType": "Text",
+          "required": false,
+          "indexed": false,
+          "enforceUniqueValues": false,
+          "active": true,
+          "maximumLength": 255,
+          "fieldId": "6fe8f2d8-1659-5b8b-905c-d20eb5bf1a32"
+        },
+        {
+          "internalName": "Email",
+          "displayName": "Email",
+          "fieldType": "Text",
+          "required": false,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "maximumLength": 255,
+          "fieldId": "9bf23239-562d-5f4a-9a4f-570d540c6d85"
+        },
+        {
+          "internalName": "Phone",
+          "displayName": "Phone",
+          "fieldType": "Text",
+          "required": false,
+          "indexed": false,
+          "enforceUniqueValues": false,
+          "active": true,
+          "maximumLength": 100,
+          "fieldId": "26ac81c7-6e4a-5c75-807c-df502dcc9d1c"
+        },
+        {
+          "internalName": "IsPrimaryContact",
+          "displayName": "Is Primary Contact",
+          "fieldType": "Boolean",
+          "required": false,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "defaultValue": false,
+          "fieldId": "232e3e7f-f1b4-5499-a4d0-7ec3c2ed4869"
+        },
+        {
+          "internalName": "ContactType",
+          "displayName": "Contact Type",
+          "fieldType": "MultiChoice",
+          "required": false,
+          "indexed": false,
+          "enforceUniqueValues": false,
+          "active": true,
+          "choices": [
+            "Primary",
+            "Commercial",
+            "Technical",
+            "Finance",
+            "Legal",
+            "Security",
+            "Other"
+          ],
+          "fieldId": "b519752a-f553-5b87-aade-3750eb369976"
+        },
+        {
+          "internalName": "IsActive",
+          "displayName": "Is Active",
+          "fieldType": "Boolean",
+          "required": true,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "defaultValue": true,
+          "fieldId": "bf59a307-ac89-55d3-acc8-7ab2dc375f68"
+        },
+        {
+          "internalName": "Notes",
+          "displayName": "Notes",
+          "fieldType": "Note",
+          "required": false,
+          "indexed": false,
+          "enforceUniqueValues": false,
+          "active": true,
+          "fieldId": "fb409bde-6fb5-59b8-8ef4-ca3e0c96ecda"
+        }
+      ],
+      "relationships": [
+        {
+          "field": "ClientID",
+          "targetResource": "Client Register",
+          "targetField": "ClientID",
+          "external": true
+        }
+      ],
+      "logicalUniqueConstraints": []
+    },
+    {
       "logicalKey": "audit",
       "physicalName": "TakeoverAudits",
       "resourceType": "List",
@@ -401,10 +538,12 @@ $ProvisioningModelJson = @'
             "Number",
             "Date",
             "Url",
-            "Person",
-            "Status",
-            "Severity",
+            "ClientPerson",
+            "ClientPersonMulti",
+            "CompanyPerson",
+            "CompanyPersonMulti",
             "EvidenceReference",
+            "EvidenceReferenceMulti",
             "RepeatingCollection"
           ],
           "fieldId": "1eb3e3ec-a7d9-5c9c-bee3-c1055439ca33"
@@ -452,15 +591,25 @@ $ProvisioningModelJson = @'
           "fieldId": "723958a4-2e53-5253-8317-1f57677802ab"
         },
         {
-          "internalName": "PersonValue",
-          "displayName": "Person Value",
-          "fieldType": "Person",
+          "internalName": "ReferenceID",
+          "displayName": "Reference ID",
+          "fieldType": "Text",
+          "required": false,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "maximumLength": 180,
+          "fieldId": "e67564a0-253f-5671-af7a-f61912729f23"
+        },
+        {
+          "internalName": "ReferenceIDsJSON",
+          "displayName": "Reference IDs JSON",
+          "fieldType": "Note",
           "required": false,
           "indexed": false,
           "enforceUniqueValues": false,
           "active": true,
-          "allowMultipleValues": false,
-          "fieldId": "aeb490bf-0cfb-5985-a945-6e5e926db6de"
+          "fieldId": "305b1017-45ee-5faf-9005-1f3b0c8cc80f"
         },
         {
           "internalName": "ItemOrder",
@@ -839,7 +988,7 @@ $ProvisioningModelJson = @'
       "resourceType": "List",
       "primaryKey": "EvidenceID",
       "titleColumn": {
-        "required": false
+        "required": true
       },
       "columns": [
         {
@@ -851,7 +1000,7 @@ $ProvisioningModelJson = @'
           "enforceUniqueValues": true,
           "active": true,
           "maximumLength": 150,
-          "fieldId": "b6101999-4318-54bd-bbdf-e5ed9e2df40b"
+          "fieldId": "77b62e31-5b55-5bbd-98e9-ee50b04b9a40"
         },
         {
           "internalName": "AuditID",
@@ -862,95 +1011,18 @@ $ProvisioningModelJson = @'
           "enforceUniqueValues": false,
           "active": true,
           "maximumLength": 100,
-          "fieldId": "43c025db-73b1-5fe6-b6ab-19ed0a791e8a"
+          "fieldId": "386b4a12-cda8-5795-abc6-2c4196b3ea44"
         },
         {
-          "internalName": "StageRecordID",
-          "displayName": "Stage Record ID",
+          "internalName": "ClientID",
+          "displayName": "Client ID",
           "fieldType": "Text",
           "required": true,
           "indexed": true,
           "enforceUniqueValues": false,
           "active": true,
-          "maximumLength": 150,
-          "fieldId": "a87cd7fe-0f68-5ad6-9971-aa15d41c36b7"
-        },
-        {
-          "internalName": "QuestionID",
-          "displayName": "Question ID",
-          "fieldType": "Text",
-          "required": false,
-          "indexed": true,
-          "enforceUniqueValues": false,
-          "active": true,
-          "maximumLength": 100,
-          "fieldId": "5a49a215-66e2-58d0-891f-5e4d442ae16b"
-        },
-        {
-          "internalName": "ResponseID",
-          "displayName": "Response ID",
-          "fieldType": "Text",
-          "required": false,
-          "indexed": true,
-          "enforceUniqueValues": false,
-          "active": true,
-          "maximumLength": 180,
-          "fieldId": "841e4cb3-8131-59dc-8a3c-ffbcd5f66add"
-        },
-        {
-          "internalName": "FindingID",
-          "displayName": "Finding ID",
-          "fieldType": "Text",
-          "required": false,
-          "indexed": true,
-          "enforceUniqueValues": false,
-          "active": true,
-          "maximumLength": 150,
-          "fieldId": "ed271073-48c5-514f-8d2d-bfa2921a4720"
-        },
-        {
-          "internalName": "EvidenceType",
-          "displayName": "Evidence Type",
-          "fieldType": "Text",
-          "required": true,
-          "indexed": true,
-          "enforceUniqueValues": false,
-          "active": true,
-          "maximumLength": 100,
-          "fieldId": "9d35fdee-ccc9-56b0-82fb-ed92a3d5fc7a"
-        },
-        {
-          "internalName": "IssueReference",
-          "displayName": "Issue Reference",
-          "fieldType": "Text",
-          "required": false,
-          "indexed": true,
-          "enforceUniqueValues": false,
-          "active": true,
-          "maximumLength": 100,
-          "fieldId": "f9cfbe2f-4ce4-5258-843c-0eb11dc6d89d"
-        },
-        {
-          "internalName": "EvidenceReference",
-          "displayName": "Evidence Reference",
-          "fieldType": "Text",
-          "required": false,
-          "indexed": false,
-          "enforceUniqueValues": false,
-          "active": true,
           "maximumLength": 255,
-          "fieldId": "9ca65c51-4737-57bb-a5c9-9af440552369"
-        },
-        {
-          "internalName": "EvidenceTitle",
-          "displayName": "Evidence Title",
-          "fieldType": "Text",
-          "required": false,
-          "indexed": false,
-          "enforceUniqueValues": false,
-          "active": true,
-          "maximumLength": 255,
-          "fieldId": "ea4194bd-715c-5163-a7d0-2dacf867b849"
+          "fieldId": "fc062e21-baa2-59a8-8206-774469ef23d1"
         },
         {
           "internalName": "Description",
@@ -960,80 +1032,80 @@ $ProvisioningModelJson = @'
           "indexed": false,
           "enforceUniqueValues": false,
           "active": true,
-          "fieldId": "d8b179c4-6e9f-5f57-b2f1-a976b25c1d09"
+          "fieldId": "1ebf9274-04a8-5353-a501-da4bf90be287"
         },
         {
-          "internalName": "ResolutionSummary",
-          "displayName": "Resolution Summary",
+          "internalName": "EvidenceType",
+          "displayName": "Evidence Type",
+          "fieldType": "Choice",
+          "required": true,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "choices": [
+            "Document",
+            "Screenshot",
+            "Email",
+            "URL",
+            "Configuration export",
+            "Interview note",
+            "System record",
+            "Other"
+          ],
+          "fieldId": "e7b1ffee-1d16-5c96-b3ca-a83d500eed27"
+        },
+        {
+          "internalName": "Reference",
+          "displayName": "Reference",
           "fieldType": "Note",
           "required": false,
           "indexed": false,
           "enforceUniqueValues": false,
           "active": true,
-          "fieldId": "d9f7f690-11e1-5843-87a8-9d9c2799f20e"
+          "fieldId": "50ddb7c2-8760-5403-9054-5fdbed00ad88"
         },
         {
-          "internalName": "ResolvedBy",
-          "displayName": "Resolved By",
-          "fieldType": "Text",
-          "required": false,
-          "indexed": false,
-          "enforceUniqueValues": false,
-          "active": true,
-          "maximumLength": 255,
-          "fieldId": "6348961e-8fd9-5ed2-8e58-0205b21d953c"
-        },
-        {
-          "internalName": "ResolvedDate",
-          "displayName": "Resolved Date",
-          "fieldType": "DateTime",
-          "required": false,
-          "indexed": false,
-          "enforceUniqueValues": false,
-          "active": true,
-          "dateOnly": true,
-          "fieldId": "e6c37d1a-c2b8-56a6-a9a4-ac5b80aa1e51"
-        },
-        {
-          "internalName": "VerificationMethod",
-          "displayName": "Verification Method",
-          "fieldType": "Note",
-          "required": false,
-          "indexed": false,
-          "enforceUniqueValues": false,
-          "active": true,
-          "fieldId": "c77aa8e0-ba88-54e4-aa0a-82067514068a"
-        },
-        {
-          "internalName": "DocumentURL",
-          "displayName": "Document URL",
-          "fieldType": "Hyperlink",
-          "required": false,
-          "indexed": false,
-          "enforceUniqueValues": false,
-          "active": true,
-          "fieldId": "59c483e9-d23d-5396-9c00-fa2e70333e28"
-        },
-        {
-          "internalName": "RecordedBy",
-          "displayName": "Recorded By",
-          "fieldType": "Person",
-          "required": false,
-          "indexed": false,
-          "enforceUniqueValues": false,
-          "active": true,
-          "allowMultipleValues": false,
-          "fieldId": "e3ee52a5-0bee-57d8-a223-53adca664a7d"
-        },
-        {
-          "internalName": "RecordedDate",
-          "displayName": "Recorded Date",
+          "internalName": "CollectedDate",
+          "displayName": "Collected Date",
           "fieldType": "DateTime",
           "required": false,
           "indexed": true,
           "enforceUniqueValues": false,
           "active": true,
-          "fieldId": "a783c46c-47ce-5f3b-a25b-b8b9b6a16747"
+          "dateOnly": true,
+          "fieldId": "3864823f-518d-5790-adf2-54be03804746"
+        },
+        {
+          "internalName": "CollectedBy",
+          "displayName": "Collected By",
+          "fieldType": "Person",
+          "required": false,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "allowMultipleValues": false,
+          "fieldId": "3d67985f-9329-5ca9-82bf-f60a0cc6d8d6"
+        },
+        {
+          "internalName": "IsActive",
+          "displayName": "Is Active",
+          "fieldType": "Boolean",
+          "required": true,
+          "indexed": true,
+          "enforceUniqueValues": false,
+          "active": true,
+          "defaultValue": true,
+          "fieldId": "3185cb10-efe7-5786-a6b9-be0040e2b2a2"
+        },
+        {
+          "internalName": "Notes",
+          "displayName": "Notes",
+          "fieldType": "Note",
+          "required": false,
+          "indexed": false,
+          "enforceUniqueValues": false,
+          "active": true,
+          "fieldId": "4f9862ea-0a56-5130-907b-ab7c5ce1be06"
         }
       ],
       "relationships": [
@@ -1044,24 +1116,10 @@ $ProvisioningModelJson = @'
           "external": false
         },
         {
-          "field": "StageRecordID",
-          "targetResource": "AuditStageRecords",
-          "targetField": "StageRecordID",
-          "external": false
-        },
-        {
-          "field": "ResponseID",
-          "targetResource": "AuditResponses",
-          "targetField": "ResponseID",
-          "external": false,
-          "optional": true
-        },
-        {
-          "field": "FindingID",
-          "targetResource": "Findings",
-          "targetField": "FindingID",
-          "external": false,
-          "optional": true
+          "field": "ClientID",
+          "targetResource": "Client Register",
+          "targetField": "ClientID",
+          "external": true
         }
       ],
       "logicalUniqueConstraints": []

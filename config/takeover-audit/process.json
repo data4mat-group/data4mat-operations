@@ -8,6 +8,7 @@
   "status": "draft",
   "description": "Defines the ordered Data4Mat takeover audit process, stage dependencies, hard stops, completion rules, and logical storage mappings.",
   "defaultStorageMappings": {
+    "clientContact": "ClientContacts",
     "audit": "TakeoverAudits",
     "stage": "AuditStageRecords",
     "response": "AuditResponses",

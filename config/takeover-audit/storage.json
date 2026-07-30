@@ -10,6 +10,13 @@
   "platform": "SharePoint",
   "entities": [
     {
+      "logicalKey": "clientContact",
+      "physicalName": "ClientContacts",
+      "resourceType": "List",
+      "active": true,
+      "purpose": "Stores structured client contact records linked to the Client Register."
+    },
+    {
       "logicalKey": "audit",
       "physicalName": "TakeoverAudits",
       "resourceType": "List",
@@ -42,7 +49,7 @@
       "physicalName": "EvidenceRegister",
       "resourceType": "List",
       "active": true,
-      "purpose": "Stores evidence references and evidence metadata."
+      "purpose": "Stores reusable evidence records linked to a client and takeover audit."
     },
     {
       "logicalKey": "remediationAction",

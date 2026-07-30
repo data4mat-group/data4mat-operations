@@ -54,7 +54,8 @@ $ViewDefinitions = @(
             "NumberValue",
             "BooleanValue",
             "DateValue",
-            "PersonValue",
+            "ReferenceID",
+            "ReferenceIDsJSON",
             "ItemOrder",
             "AnsweredBy",
             "AnsweredDate",
@@ -80,19 +81,32 @@ $ViewDefinitions = @(
         )
     },
     [pscustomobject]@{
+        ResourceName = "ClientContacts"
+        Fields = @(
+            "ContactID",
+            "ClientID",
+            "FullName",
+            "JobTitle",
+            "Email",
+            "Phone",
+            "IsPrimaryContact",
+            "ContactType",
+            "IsActive",
+            "Modified"
+        )
+    },
+    [pscustomobject]@{
         ResourceName = "EvidenceRegister"
         Fields = @(
             "EvidenceID",
+            "Title",
             "AuditID",
-            "StageRecordID",
-            "QuestionID",
-            "ResponseID",
-            "FindingID",
+            "ClientID",
             "EvidenceType",
-            "EvidenceTitle",
-            "DocumentURL",
-            "RecordedBy",
-            "RecordedDate",
+            "Reference",
+            "CollectedDate",
+            "CollectedBy",
+            "IsActive",
             "Modified"
         )
     },
