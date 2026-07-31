@@ -6,7 +6,9 @@ param(
 
     [string]$EntraApplicationId = $env:ENTRAID_APP_ID,
 
-    [switch]$ValidateOnly
+    [switch]$ValidateOnly,
+
+    [switch]$ResetDevelopmentStorage
 )
 
 Set-StrictMode -Version Latest
@@ -1873,7 +1875,8 @@ function Get-ExpectedSharePointType {
         "Number"    { return "Number" }
         "Boolean"   { return "Boolean" }
         "DateTime"  { return "DateTime" }
-        "Choice"    { return "Choice" }
+        "Choice"      { return "Choice" }
+        "MultiChoice" { return "MultiChoice" }
         "Person"    { return "User" }
         "Hyperlink" { return "URL" }
         default {
@@ -1942,6 +1945,10 @@ function New-FieldXml {
             $attributes.FillInChoice = "FALSE"
         }
 
+        "MultiChoice" {
+            $attributes.FillInChoice = "FALSE"
+        }
+
         "Person" {
             $attributes.List = "UserInfo"
             $attributes.UserSelectionMode = "PeopleOnly"
@@ -1963,7 +1970,7 @@ function New-FieldXml {
 
     $childXml = ""
 
-    if ($Definition.fieldType -eq "Choice") {
+    if ($Definition.fieldType -in @("Choice", "MultiChoice")) {
         $choicesXml = (
             @($Definition.choices) |
                 ForEach-Object {
@@ -2062,10 +2069,10 @@ function Get-FieldValidationErrors {
         }
     }
 
-    if ($Definition.fieldType -eq "Choice") {
+    if ($Definition.fieldType -in @("Choice", "MultiChoice")) {
         $actualChoices = @(
-            $fieldNode.CHOICES.CHOICE |
-                ForEach-Object { [string]$_ }
+            $fieldNode.SelectNodes("./CHOICES/CHOICE") |
+                ForEach-Object { [string]$_.InnerText }
         )
 
         $expectedChoices = @($Definition.choices)
@@ -2180,12 +2187,34 @@ function Assert-ExternalClientRegister {
     }
 }
 
-function Assert-ResourceShell {
+function Ensure-ResourceShells {
     foreach ($resource in $ProvisioningModel.resources) {
         $list = Get-PnPList `
             -Identity $resource.physicalName `
             -Includes "BaseTemplate", "EnableVersioning" `
-            -ThrowExceptionIfListNotFound
+            -ErrorAction SilentlyContinue
+
+        if ($null -eq $list) {
+            $template = if ($resource.resourceType -eq "DocumentLibrary") {
+                "DocumentLibrary"
+            }
+            else {
+                "GenericList"
+            }
+
+            Write-Host "Creating resource: $($resource.physicalName)" -ForegroundColor Cyan
+
+            New-PnPList `
+                -Title $resource.physicalName `
+                -Template $template `
+                -OnQuickLaunch:$false |
+                Out-Null
+
+            $list = Get-PnPList `
+                -Identity $resource.physicalName `
+                -Includes "BaseTemplate", "EnableVersioning" `
+                -ThrowExceptionIfListNotFound
+        }
 
         $expectedTemplate = if ($resource.resourceType -eq "DocumentLibrary") {
             101
@@ -2201,6 +2230,31 @@ function Assert-ResourceShell {
                 "'$($resource.resourceType)'."
             )
         }
+    }
+}
+
+function Reset-DevelopmentStorageResources {
+    $resourceNames = @(
+        "AuditResponses",
+        "EvidenceRegister",
+        "ClientContacts"
+    )
+
+    foreach ($resourceName in $resourceNames) {
+        $list = Get-PnPList `
+            -Identity $resourceName `
+            -ErrorAction SilentlyContinue
+
+        if ($null -eq $list) {
+            Write-Host "Development resource does not exist: $resourceName"
+            continue
+        }
+
+        Write-Host "Removing development resource: $resourceName" -ForegroundColor Yellow
+
+        Remove-PnPList `
+            -Identity $resourceName `
+            -Force
     }
 }
 
@@ -2271,7 +2325,16 @@ Connect-PnPOnline `
 
 try {
     Assert-ExternalClientRegister
-    Assert-ResourceShell
+
+    if ($ResetDevelopmentStorage) {
+        if ($ValidateOnly) {
+            throw "-ValidateOnly cannot be combined with -ResetDevelopmentStorage."
+        }
+
+        Reset-DevelopmentStorageResources
+    }
+
+    Ensure-ResourceShells
 
     $state = Get-ProvisioningState
 
